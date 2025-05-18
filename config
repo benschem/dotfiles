@@ -1,4 +1,25 @@
+# Default settings for all unless overridden
 Host *
   UseKeychain yes
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ed25519
+
+# Login as root
+Host droplet-root
+  HostName 170.64.254.187
+  User root
+
+# Login as admin
+Host droplet-admin
+  Hostname 170.64.254.187
+  User admin
+
+# Login as benschem
+Host droplet-benschem
+  Hostname 170.64.254.187
+  User benschem
+
+# Login as plausible
+Host droplet-plausible
+  Hostname 170.64.254.187
+  User plausible

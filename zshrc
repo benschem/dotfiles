@@ -1,7 +1,14 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ZSH=$HOME/.oh-my-zsh
 
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Useful oh-my-zsh plugins for Le Wagon bootcamps
 plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search)
@@ -58,7 +65,7 @@ type -a nvm > /dev/null && load-nvmrc
 # Same for `./node_modules/.bin` and nodejs
 export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
 
-# Store your own aliases in the ~/.aliases file and load the here.
+# Store your own aliases in the ~/.aliases file and load them here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # Encoding stuff for the terminal
@@ -70,3 +77,29 @@ export EDITOR=code
 
 # Set ipdb as the default Python debugger
 export PYTHONBREAKPOINT=ipdb.set_trace
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# For when you try to drop a pg db and it won't let you.
+killdb() {
+  if [ -z "$1" ]; then
+    echo "Usage: killdb YourAppName"
+  else
+    ps -ef | grep postgres | grep "$1" | awk '{print $2}' | xargs -r kill -9
+  fi
+}
+# ps -ef
+# Lists all processes
+#
+# | grep postgres
+# Filters for PostgreSQL processes
+#
+# | grep YourAppName
+# Further filters for YourAppName processes
+#
+# | awk '{print $2}'
+# get the PID from the second field of each line
+#
+# | xargs kill -9:
+# Passes the PID to kill -9 to terminate

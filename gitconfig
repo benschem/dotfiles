@@ -12,6 +12,7 @@
 [core]
   pager = less -FRSX
   editor = code --wait
+	excludesFile = /Users/Ben/.map
 
 [alias]
   co = checkout
@@ -25,6 +26,7 @@
 
   # Clean merged branches
   sweep = !git branch --merged master | grep -v 'master$' | xargs git branch -d && git remote prune origin
+  sweepmain = !git branch --merged main | grep -v 'main$' | xargs git branch -d && git remote prune origin
 
   # http://www.jukie.net/bart/blog/pimping-out-git-log
   lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
@@ -51,7 +53,7 @@
   rebase = false
 
 [init]
-  defaultBranch = master
+	defaultBranch = main
 [user]
 	email = benschembri@gmail.com
 	name = Ben Schembri

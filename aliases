@@ -5,5 +5,26 @@ alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
 
-# NOTE: On Q3 2021, Le Wagon decided to change the Web Dev curriculum default text editor
-alias stt="echo 'Launching VS Code instead of Sublime Text... (cf ~/.aliases)' && code ."
+# Git aliases (replace OMZ's git plugin)
+alias gst="git status"
+alias gl="git pull"
+alias gco="git checkout"
+alias gcb='git checkout -b'
+alias ga="git add"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gp='git push'
+alias gb='git branch'
+alias glo='git log --oneline --decorate'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
+
+# Aliases (replace OMZ's common-aliases plugin)
+alias ll="ls -lh"
+alias la="ls -Al"
+alias ldot='ls -ld .*'
+alias grep='grep --color'
+alias help='man'
+
+# https://github.com/localtunnel/localtunnel
+alias lt="localtunnel"
