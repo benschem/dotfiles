@@ -17,38 +17,39 @@ zsh-defer source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 zsh-defer source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Load rbenv if installed (to manage Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
-type -a rbenv > /dev/null && eval "$(rbenv init -)"
+export PATH="${HOME}/.rbenv/bin:${PATH}"
+command -v rbenv > /dev/null && zsh-defer eval "$(rbenv init -)"
 
 # Load nvm (to manage node versions)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# Call `nvm use` automatically in a directory with a `.nvmrc` file
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if nvm -v &> /dev/null; then
-    local node_version="$(nvm version)"
-    local nvmrc_path="$(nvm_find_nvmrc)"
+# Defer setting up nvm auto-switching
+zsh-defer autoload -U add-zsh-hook
+zsh-defer () {
+  load-nvmrc() {
+    if command -v nvm > /dev/null; then
+      local node_version="$(nvm version)"
+      local nvmrc_path="$(nvm_find_nvmrc)"
 
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+      if [ -n "$nvmrc_path" ]; then
+        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-      if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-      elif [ "$nvmrc_node_version" != "$node_version" ]; then
-        nvm use --silent
+        if [ "$nvmrc_node_version" = "N/A" ]; then
+          nvm install
+        elif [ "$nvmrc_node_version" != "$node_version" ]; then
+          nvm use --silent
+        fi
+      elif [ "$node_version" != "$(nvm version default)" ]; then
+        nvm use default --silent
       fi
-    elif [ "$node_version" != "$(nvm version default)" ]; then
-      nvm use default --silent
     fi
-  fi
-}
-if type -a nvm > /dev/null; then
+  }
+
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
-fi
+}
 
 # Encoding stuff for the terminal
 export LANG=en_US.UTF-8
