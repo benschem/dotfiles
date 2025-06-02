@@ -1,0 +1,33 @@
+# Note to self: only add aliases you actually use
+
+# Git aliases (replace OMZ's git plugin)
+alias gst="git status"
+alias gl="git pull"
+alias gco="git checkout"
+alias gcb='git checkout -b'
+alias ga="git add"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gp='git push'
+alias gb='git branch'
+alias glo='git log --oneline --decorate'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --graph --all --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"'
+alias grs='git restore --staged'
+
+# Shell aliases (replace OMZ's common-aliases plugin)
+alias ll="ls -lh"
+alias la="ls -Al"
+alias ldot='ls -ld .*'
+alias grep='grep --color'
+alias help='man'
+
+# https://github.com/localtunnel/localtunnel
+alias lt="localtunnel"
+
+# Get External IP / Internet Speed
+alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+
+# Quickly serve the current directory as HTTP
+alias serve='ruby -run -e httpd . -p 8000'

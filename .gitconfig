@@ -1,0 +1,66 @@
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+
+[color "branch"]
+  current = green
+  remote = yellow
+
+[core]
+  pager = less -FRSX
+  editor = code --wait
+
+[alias]
+  # Small status with symbols
+  st = status -sb
+
+  # Diffs - debating whether to cut this
+  d = !git --no-pager diff
+  dt  = difftool
+  stat = !git --no-pager diff --stat
+
+  # Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)Add commentMore actions
+  remoteSetHead = remote set-head origin --auto
+  # Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
+  defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+  # Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
+  sweep = !git branch --merged $(git defaultBranch) | grep -E -v ' (master|main)$' | xargs -r git branch -d && git remote prune origin
+
+  # http://www.jukie.net/bart/blog/pimping-out-git-log
+  # also gloga in ~/.aliases is the same
+  loga = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
+
+  # Move a file from the staging area back to working directory
+  unstage = restore --staged
+
+  # Undo the last commit but keep changes staged.
+  undo = reset --soft HEAD~1
+
+  # Undo the last commit and unstage changes
+  uncommit = reset --mixed HEAD~1
+  # Use uncommit only if you haven’t pushed.
+  # Once it’s on a shared branch, rewriting history is going to affect teammates.
+  # Look up `git revert HEAD` instead.
+
+  # Amend the last commit without changing the message
+  amend = commit --amend --no-edit
+
+[help]
+  autocorrect = 1
+
+[push]
+	default = simple
+
+[pull]
+  rebase = false
+
+[init]
+	defaultBranch = main
+
+# My identity for Le Wagon
+[user]
+	email = benschembri@gmail.com
+	name = Ben Schembri

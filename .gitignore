@@ -1,0 +1,11 @@
+# MacOS system files
+.DS_Store
+.Trashes
+Icon? # The Icon\r file used by Finder (trailing CR)
+
+# Editor and tools
+.vscode/
+.bundle/
+.nvm/
+.npm/
+.cache/

@@ -1,0 +1,22 @@
+# Color output & better formatting
+--color
+--format documentation
+# Other  commonly used options:
+
+# Ensures spec_helper.rb is loaded before each test. Usually included by default in newer Rails apps.
+# --require spec_helper
+
+# Stop running tests after the first failure. Useful during debugging.
+# --fail-fast
+
+# Show slowest examples at the end of the test run. Helpful for performance tuning.
+# --profile
+
+# progress	Use the default dot output (. for pass, F for fail).
+# --format
+
+# Randomizes test order (good for catching order dependencies).
+# --order rand
+
+# Seeds the random order, useful for reproducing order-related bugs.
+# --seed 1234
