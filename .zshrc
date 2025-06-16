@@ -16,6 +16,10 @@ zsh-defer source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Plugin to enable history substring search
 zsh-defer source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+# Add a directory for my own personal tools
+mkdir -p "$HOME/bin"
+export PATH="$HOME/bin:$PATH"
+
 # Load rbenv if installed (to manage Ruby versions)
 export PATH="${HOME}/.rbenv/bin:${PATH}"
 command -v rbenv > /dev/null && zsh-defer eval "$(rbenv init -)"
