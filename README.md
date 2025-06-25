@@ -70,6 +70,10 @@ There is a setup script for this - see below.
 
 ### Set up Shell
 
+```zsh
+curl -sS https://starship.rs/install.sh | sh
+```
+
 Clone these plugins into ~/.config/zsh/
 
 ```zsh
