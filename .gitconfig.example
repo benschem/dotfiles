@@ -10,8 +10,10 @@
   remote = yellow
 
 [core]
-  pager = less -FRSX
+  pager = less -FRX # https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager
   editor = code --wait
+  # global .gitignore file that will apply automatically to all repos
+	excludesfile = /Users/Ben/.gitignore
 
 [alias]
   # Small status with symbols
@@ -55,12 +57,14 @@
 	default = simple
 
 [pull]
-  rebase = false
+  rebase = true
 
 [init]
 	defaultBranch = main
 
-# My identity for Le Wagon
+# My Github identity
+# Comment this out to disable pull and push from this account
+# REMINDER: comment this out on the work machine
 [user]
 	email = benschembri@gmail.com
 	name = Ben Schembri

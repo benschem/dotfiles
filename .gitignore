@@ -9,3 +9,6 @@ Icon? # The Icon\r file used by Finder (trailing CR)
 .nvm/
 .npm/
 .cache/
+
+# Your real gitconfig
+.gitconfig
