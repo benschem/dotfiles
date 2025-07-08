@@ -104,8 +104,17 @@ fi
 export EDITOR="${EDITOR:-$VISUAL}"
 export BUNDLER_EDITOR="$EDITOR"
 
-# Custom function
-# For when you try to drop a postges db and it won't let you.
+# Custom functions
+## Make a directory and change into it
+mkcd() {
+  mkdir -p "$1" && cd "$1";
+}
+## Rerun the last command with sudo
+please() {
+  sudo $(fc -ln -1)
+  # fc -ln -1 outputs the last command exactly as typed
+}
+## For when you try to drop a postges db and it won't let you.
 killdb() {
   if [ -z "$1" ]; then
     echo "Usage: killdb YourAppName"
