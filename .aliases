@@ -1,35 +1,51 @@
 # Note to self: only add aliases you actually use
+alias aliases='alias' # view all aliases
 
 # Git aliases (replace OMZ's git plugin)
-alias gst="git status"
-alias gl="git pull"
-alias gco="git checkout"
-alias gcb='git checkout -b'
-alias ga="git add"
-alias gc="git commit"
-alias gd="git diff"
-alias gca="git commit --amend --no-edit"
-alias gcm="git commit -m"
+## Pull/push
+alias gs='git status -sb' # Small status with symbols
+alias gst='git status'
+alias gpl='git pull'
 alias gp='git push'
+alias grb='git rebase -i'
+
+## Branches
 alias gb='git branch'
+alias gco='git switch' # more modern git checkout
+alias gcb='git switch --create' # more modern git checkout --branch
+
+## Diff
+alias gd='git --no-pager diff --word-diff=color'
+alias gdt='git difftool'
+alias gstat='git --no-pager diff --stat'
+
+## Committing
+alias ga='git add'
+alias gap='git add --patch'
+alias gc='git commit'
+alias gcm='git commit --message'
+alias gca="echo 'Amending the last commit (I hope you didn\'t already push it)...'; git commit --amend --no-edit"
+alias grs='git restore --staged'
+alias guc='git uncommit-stage' # alias for reset --soft HEAD~1
+
+## Log
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --graph --all --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"'
-alias grs='git restore --staged'
+alias gloga='git log --graph --all --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
 
 # Shell aliases (replace OMZ's common-aliases plugin)
-alias ll="ls -lh"
-alias la="ls -Al"
-alias ldot='ls -ld .*'
-alias grep='grep --color'
-alias help='man'
+alias ll='ls --long --human-readable' # ls -lh
+alias la="ls --almost-all --long" # ls -Al
+alias ldot="ls --long --directory -- .*" # ls -ld .*
+alias grep="grep --color"
+alias help="man"
 
 # https://github.com/localtunnel/localtunnel
-alias lt="localtunnel"
+alias lt='localtunnel'
 
 # Get External IP / Internet Speed
-alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+alias myip='curl https://ipinfo.io/json' # or /ip for plain-text ip
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000'
