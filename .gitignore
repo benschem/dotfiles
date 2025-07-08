@@ -10,5 +10,8 @@ Icon? # The Icon\r file used by Finder (trailing CR)
 .npm/
 .cache/
 
+# Your SSH config
+config
+
 # Your real gitconfig
 .gitconfig
