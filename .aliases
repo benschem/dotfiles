@@ -9,15 +9,15 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gri='git rebase -i'
 
-## Branches
-alias gb='git branch'
-alias gco='git switch' # more modern git checkout
+## Git branching
+alias gco='git switch'          # more modern git checkout
 alias gcb='git switch --create' # more modern git checkout --branch
 
-## Diff
+## Git diffing
 alias gd='git --no-pager diff --word-diff=color'
 alias gdt='git difftool'
 alias gstat='git --no-pager diff --stat'
+alias ghist='git log --follow --' # view full history of a single file (usage: ghist path/to/file)
 
 ## Committing
 alias ga='git add'
