@@ -1,12 +1,15 @@
 [color]
-  branch = auto
-  diff = auto
-  interactive = auto
-  status = auto
-  ui = auto
+  branch = auto       # enable color in branch output when running in a terminal
+  diff = auto         # colorize diffs for easier identification of changes
+  interactive = auto  # add color to prompts during interactive commands
+  status = auto       # colorize git status output for better readability
+  ui = auto           # general UI coloring to improve overall output clarity
+
+  # Options: auto / always / never
+  # auto enables color if output is a terminal and disables if not
 
 [color "branch"]
-  current = green
+  current = green bold
   remote = yellow
 
 [core]
