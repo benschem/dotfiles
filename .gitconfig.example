@@ -30,22 +30,23 @@
   # Look up `git revert HEAD` instead.
 
   # Necessary for scripting Git operations that rely on the remote's default branch
-  ## Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
-  defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
-  ## Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)
-  remoteSetHead = remote set-head origin --auto
+  defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4  ## Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
+  remoteSetHead = remote set-head origin --auto ## Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)
+
 
 [help]
   autocorrect = 2 # Correct with no delay
 
 [push]
-  # Safely write git push without arguments
-  # Only push the current branch to the remote of the same name
-	default = simple
+  # Avoid enabling these if you have deploy remotes like staging or production
+  # autoSetupRemote = true    # automatically sets upstream on each push to whichever remote was pushed to
+  # default = simple          # pushes upstream without needing to type remote/branch
+  # Better to be explicit:
+  #   git push --set-upstream origin main
+  # Then plain `git push` only pushes to the origin remote, never staging or production
 
 [pull]
-  # Rebase (instead of merge) on pull to keep git history cleaner
-  rebase = true
+  rebase = true # Rebase (instead of merge) on pull to keep git history cleaner
 
 [init]
 	defaultBranch = main
@@ -56,5 +57,6 @@
 [user]
 	email = benschembri@gmail.com
 	name = Ben Schembri
+
 [diff]
 	tool = vimdiff
