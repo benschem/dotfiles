@@ -26,12 +26,13 @@ alias gc='git commit'
 alias gcm='git commit --message'
 alias gca='git commit --amend --no-edit && (git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1 && [[ $(git rev-list --count @{u}..HEAD) -eq 0 ]] && echo "[INFO] It was not safe to amend - this commit has already been pushed. Pushing now will rewrite history. Undo and make a new commit or if you must push run: \"git push --force-with-lease\"" || echo "[INFO] It was safe to amend - this commit has not been pushed yet (or no upstream is set)")'
 alias grs='git restore --staged'
-alias guc='git uncommit-stage' # alias for reset --soft HEAD~1
+alias guc='git uncommit'      # alias for reset --soft HEAD~1
+alias grvt='git revert HEAD'  # create a new commit that undoes the changes made by the last commit
 
-## Log
+## Git logging
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --graph --all --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
+alias gloga='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
 
 # Shell aliases (replace OMZ's common-aliases plugin)
 alias ll='ls --long --human-readable' # ls -lh
