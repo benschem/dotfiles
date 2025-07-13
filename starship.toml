@@ -47,13 +47,6 @@ symbol = "nodejs "
 [memory_usage]
 symbol = "memory "
 
-[os.symbols]
-Fedora = "fed "
-Linux = "lnx "
-Macos = "mac "
-Raspbian = "rasp "
-Ubuntu = "ubnt "
-
 [package]
 symbol = "pkg "
 
@@ -64,6 +57,8 @@ symbol = "php "
 symbol = "py "
 
 [ruby]
+detect_extensions = ["rb"]
+detect_files = ["Gemfile", ".ruby-version"]
 symbol = "rb "
 
 [rust]
