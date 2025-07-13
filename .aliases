@@ -43,6 +43,8 @@ alias grep='grep --color'      # highlight matching text in grep output
 alias help='man'               # use 'help' to open manual pages
 alias tree='tree -a -C -d --sort=name --dirsfirst -L'
 alias reload='source ~/.zshrc'
+alias allusers="awk -F':' '{ print \$1 }' /etc/passwd"
+alias humans="awk -F: -v min=\$(awk '/^UID_MIN/ { print \$2 }' /etc/login.defs) '{ if (\$3 >= min) print \$1 }' /etc/passwd"
 
 # Networking
 alias lt='localtunnel'                     # expose a local port to the internet
