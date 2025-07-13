@@ -35,21 +35,20 @@ alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
 
 # Shell aliases (replace OMZ's common-aliases plugin)
-alias ll='ls --long --human-readable' # ls -lh
-alias la="ls --almost-all --long" # ls -Al
-alias ldot="ls --long --directory -- .*" # ls -ld .*
-alias grep="grep --color"
-alias help="man"
+alias ls='ls -AFG'             # list all files, trailing slashes, color
+alias la='ls -AlhFG'           # list all files, long format, human-readable file sizes, trailing slashes, color
+alias ldot='ls -ldG .*'        # list metadata for dotfiles/directories only (not contents)
+alias grep='grep --color'      # highlight matching text in grep output
+alias help='man'               # use 'help' to open manual pages
+alias tree='tree -a -C -d --sort=name --dirsfirst -L'
+alias reload='source ~/.zshrc'
 
-# https://github.com/localtunnel/localtunnel
-alias lt='localtunnel'
-
-# Get External IP / Internet Speed
-alias myip='curl https://ipinfo.io/json' # or /ip for plain-text ip
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-
-# Quickly serve the current directory as HTTP
-alias serve='ruby -run -e httpd . -p 8000'
+# Networking
+alias lt='localtunnel'                     # expose a local port to the internet
+alias myip='curl https://ipinfo.io/json'   # public IP info (use /ip for raw IP only)
+alias serve='ruby -run -e httpd . -p 8000' # static file server from current directory
+alias ports='lsof -i -P -n | grep LISTEN'  # show listening TCP ports with numeric IPs/ports
+alias sniff='sudo lsof -i -P -n'           # show all active network sockets (requires sudo)
 
 # Clarity project manager aliases
 alias urgent='clarity list --filter urgency=high --filter urgency=medium --filter urgency=low --sort urgency'
