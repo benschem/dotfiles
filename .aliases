@@ -2,12 +2,12 @@
 alias aliases='alias' # view all aliases
 
 # Git aliases (replace OMZ's git plugin)
-## Pull/push
 alias gs='git status -sb' # Small status with symbols
 alias gst='git status'
 alias gpl='git pull'
 alias gp='git push'
-alias grb='git rebase -i'
+alias gpf='git push --force-with-lease'
+alias gri='git rebase -i'
 
 ## Branches
 alias gb='git branch'
