@@ -20,41 +20,6 @@ zsh-defer source $ZSH/zsh-history-substring-search/zsh-history-substring-search.
 mkdir -p "$HOME/bin"
 export PATH="$HOME/bin:$PATH"
 
-# Load rbenv if installed (to manage Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-command -v rbenv > /dev/null && zsh-defer eval "$(rbenv init -)"
-
-# Load nvm (to manage node versions)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# Defer setting up nvm auto-switching
-zsh-defer autoload -U add-zsh-hook
-zsh-defer () {
-  load-nvmrc() {
-    if command -v nvm > /dev/null; then
-      local node_version="$(nvm version)"
-      local nvmrc_path="$(nvm_find_nvmrc)"
-
-      if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-          nvm install
-        elif [ "$nvmrc_node_version" != "$node_version" ]; then
-          nvm use --silent
-        fi
-      elif [ "$node_version" != "$(nvm version default)" ]; then
-        nvm use default --silent
-      fi
-    fi
-  }
-
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
-}
-
 # Encoding stuff for the terminal
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -268,3 +233,15 @@ gcan() {
 # Edge cases
 # If the branch has no commits or a shallow history, merge-base might behave unexpectedly.
 # If the reflog is cleared or expired, HEAD@{1} might be missing.
+
+# BEGIN ANSIBLE MANAGED BLOCK
+# Load asdf
+. $(brew --prefix asdf)/libexec/asdf.sh
+
+# Add asdf to PATH
+. $(brew --prefix asdf)/libexec/asdf.sh
+
+# Add asdf completions
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
+# END ANSIBLE MANAGED BLOCK

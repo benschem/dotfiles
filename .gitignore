@@ -15,3 +15,7 @@ config
 
 # Your real gitconfig
 .gitconfig
+
+# Work differences I don't want to commit
+setup.sh
+.zshrc

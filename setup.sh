@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR="$HOME/code/benschem/dotfiles"
+DOTFILES_DIR="$HOME/code/dotfiles"
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/Library/Application\ Support/Code/User"
