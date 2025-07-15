@@ -39,11 +39,15 @@ alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
 
 # Shell aliases (replace OMZ's common-aliases plugin)
-alias ls='ls -AFG'             # list all files, trailing slashes, color
-alias la='ls -AlhFG'           # list all files, long format, human-readable file sizes, trailing slashes, color
-alias ldot='ls -ldG .*'        # list metadata for dotfiles/directories only (not contents)
-alias grep='grep --color'      # highlight matching text in grep output
-alias help='man'               # use 'help' to open manual pages
+alias ls='ls -AFG'                   # list all files, trailing slashes, color
+alias lss='ls | sort --ignore-case'  # list all files, trailing slashes, sorted by
+alias la="echo 'permissions|lnk|ownr|group| size |  last mod  |  pathname' && ls -AlhFG" # list all files, long format, human-readable file sizes, trailing slashes, color
+alias ldot='ls -ldG .*'             # list metadata for dotfiles/directories only (not contents)
+alias lsize='du -sh .'              # size of current directory, human-readable
+alias grep='grep --color'           # highlight matching text in grep output
+alias hgrep='fc -El 0 | grep'       # searches for a given word in the previously used commands
+alias ff='find . -type f -name'     # find files with given name
+alias help='man'                    # use 'help' to open manual pages
 alias tree='tree -a -C -d --sort=name --dirsfirst -L'
 alias reload='source ~/.zshrc'
 alias allusers="awk -F':' '{ print \$1 }' /etc/passwd"
