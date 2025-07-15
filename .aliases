@@ -1,6 +1,9 @@
 # Note to self: only add aliases you actually use
 alias aliases='command -v bat >/dev/null && bat --language=sh ~/.aliases --style=plain --paging=never || (cat ~/.aliases; echo ""; echo "# [INFO] bat not found. Run: brew install bat for syntax highlighting")'
 
+# Dev
+alias be='bundle exec'
+
 # Git aliases (replace OMZ's git plugin)
 alias gs='git status -sb' # Small status with symbols
 alias gst='git status'
