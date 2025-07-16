@@ -39,7 +39,7 @@ alias grvt='git revert HEAD'  # create a new commit that undoes the changes made
 ## Git logging
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
+alias gloga='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%ar) %C(bold blue)%an%Creset %C(yellow)%d%Creset"' # http://www.jukie.net/bart/blog/pimping-out-git-log
 
 # Shell aliases (replace OMZ's common-aliases plugin)
 alias ls='ls -AFG'                   # list all files, trailing slashes, color
