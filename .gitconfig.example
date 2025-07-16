@@ -59,4 +59,4 @@
 	name = Ben Schembri
 
 [diff]
-	tool = vimdiff
+	tool = code

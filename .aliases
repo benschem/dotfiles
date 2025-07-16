@@ -8,12 +8,16 @@ alias be='bundle exec'
 alias gs='git status -sb' # Small status with symbols
 alias gst='git status'
 alias gpl='git pull'
+alias gpu='git push -u origin HEAD'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
+
+# Rebasing
+alias rebase='echo -e "When rebasing interactively:\n\n1. Edit the todo list (pick, squash, fixup, reword)\n2. Save and close the editor to start the rebase\n3. If conflicts occur:\n   a. Resolve conflicts in your editor\n   b. Stage resolved files: git add <files>\n   c. Continue rebase: git rebase --continue\n4. To skip a problematic commit: git rebase --skip\n5. To abort the rebase at any time: git rebase --abort\n6. Repeat steps 3-5 until the rebase completes\n7. If the branch is shared, force push with: git push --force-with-lease"'
+alias grb='git rebase'
 alias gri='git rebase -i'
 alias grc='git rebase --continue'
 alias gra='git rebase --abort'
-alias gpu='git push -u origin HEAD'
 
 ## Git branching
 alias gco='git switch'          # more modern git checkout
