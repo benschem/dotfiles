@@ -13,11 +13,27 @@
   remote = yellow
 
 [core]
-  pager = less -FRX # https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager
+  # pager = less -FRX # https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager
+  pager = delta
   editor = code --wait
 
   # global .gitignore file that will apply automatically to all repos
 	excludesfile = /Users/Ben/.gitignore
+
+[delta]
+  navigate = true # use n and N to move between diff sections
+  dark = true # or light = true, or omit for auto-detection
+  line-numbers = true
+	side-by-side = true
+  syntax-theme = Dracula
+  line-numbers-left-format = "{nm:>4}│"
+  line-numbers-right-format = "{np:>4}│"
+
+[merge]
+    conflictstyle = zdiff3
+
+[interactive]
+    diffFilter = delta --color-only
 
 [alias]
   # Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
