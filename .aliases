@@ -4,7 +4,7 @@ alias aliases='command -v bat >/dev/null && bat --language=sh ~/.aliases --style
 # Dev
 alias be='bundle exec'
 
-# Git aliases (replace OMZ's git plugin)
+# Git push/pull
 alias gs='git status -sb' # Small status with symbols
 alias gst='git status'
 alias gpl='git pull'
@@ -12,6 +12,7 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gri='git rebase -i'
 alias grc='git rebase --continue'
+alias gpu='git push -u origin HEAD'
 
 ## Git branching
 alias gco='git switch'          # more modern git checkout
