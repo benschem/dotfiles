@@ -11,6 +11,7 @@ alias gpl='git pull'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gri='git rebase -i'
+alias grc='git rebase --continue'
 
 ## Git branching
 alias gco='git switch'          # more modern git checkout
