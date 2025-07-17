@@ -222,3 +222,49 @@ asowner() {
 
   sudo -u "$owner" "${@:2}"
 }
+
+# Wrapper for git commit --amend with push safety checks
+gca() {
+  local amend_cmd="git commit --amend"
+  [[ "${FUNCNAME[0]}" == "gcan" ]] && amend_cmd+=" --no-edit"
+
+  if ! $amend_cmd "$@"; then
+    echo "[ERROR] Amend failed. Aborting push safety check." >&2
+    return 1
+  fi
+
+  local current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  local upstream=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}" 2>/dev/null)
+  local invoker="${FUNCNAME[0]}"
+
+  if [[ -n "$upstream" ]]; then
+    local merge_base=$(git merge-base HEAD "$upstream")
+    local upstream_sha=$(git rev-parse "$upstream")
+    local head_sha=$(git rev-parse HEAD)
+
+    if [[ "$merge_base" != "$upstream_sha" ]]; then
+      echo "[WARN] HEAD is not a descendant of $upstream"
+      echo "       You may have rewritten published history!"
+      echo "       - Undo amend and commit changes separately:    git reset --soft HEAD@{1}^ && gc"
+      echo "       - OR force push the new history if safe:       gpf"
+    else
+      echo "[INFO] Amended commit has not been pushed yet (safe to push)."
+      echo "       - Use:   gp"
+    fi
+  else
+    echo "[WARN] No upstream set for '$current_branch'."
+    echo "       - set upstream:                           gup"
+    echo "       - pull with rebase to sync remote:        gpl"
+    echo "       - push safely or force push if needed:    gp OR gpf"
+  fi
+}
+
+# no-edit variant
+gcan() {
+  gca "$@"
+}
+
+# gca TODOS:
+# Edge cases
+# If the branch has no commits or a shallow history, merge-base might behave unexpectedly.
+# If the reflog is cleared or expired, HEAD@{1} might be missing.

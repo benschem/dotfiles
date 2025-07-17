@@ -8,9 +8,10 @@ alias be='bundle exec'
 alias gs='git status -sb' # small status with symbols
 alias gst='git status'
 alias gpl='git pull'
-alias gpu='git push -u origin HEAD'
+alias gpu='git push -u origin HEAD' # sets upstream to branch name and pushes HEAD
 alias gp='git push'
 alias gpf='git push --force-with-lease'
+alias gup='git branch --set-upstream-to=origin/$(git branch --show-current)' # sets upstream to branch name without pushing
 
 # Rebasing
 alias rebase='echo -e "When rebasing interactively:\n\n1. Edit the todo list (pick, squash, fixup, reword)\n2. Save and close the editor to start the rebase\n3. If conflicts occur:\n   a. Resolve conflicts in your editor\n   b. Stage resolved files: git add <files>\n   c. Continue rebase: git rebase --continue\n4. To skip a problematic commit: git rebase --skip\n5. To abort the rebase at any time: git rebase --abort\n6. Repeat steps 3-5 until the rebase completes\n7. If the branch is shared, force push with: git push --force-with-lease"'
@@ -21,7 +22,7 @@ alias gra='git rebase --abort'
 
 ## Git branching
 alias gb='git branch'
-alias gbl="gbl" # method defined in .zshrc that lists branches
+alias gbl="gbl" # function defined in .zshrc that lists branches
 alias gco='git switch' # more modern git checkout
 alias gcb='git switch --create' # more modern git checkout --branch
 
@@ -36,8 +37,8 @@ alias ga='git add'
 alias gap='git add --patch'
 alias gc='git commit'
 alias gcm='git commit --message'
-alias gca='git commit --amend && (git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1 && [[ $(git rev-list --count @{u}..HEAD) -eq 0 ]] && echo "[INFO] It was not safe to amend - this commit has already been pushed. Pushing now will rewrite history. Undo and make a new commit or if you must push run: \"git push --force-with-lease\"" || echo "[INFO] It was safe to amend - this commit has not been pushed yet (or no upstream is set)")'
-alias gcan='git commit --amend --no-edit && (git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1 && [[ $(git rev-list --count @{u}..HEAD) -eq 0 ]] && echo "[INFO] It was not safe to amend - this commit has already been pushed. Pushing now will rewrite history. Undo and make a new commit or if you must push run: \"git push --force-with-lease\"" || echo "[INFO] It was safe to amend - this commit has not been pushed yet (or no upstream is set)")'
+alias gca='gca' # function defined in .zshrc that safety checks git commit --amend
+alias gcan='gcan' # function defined in .zshrc that safety checks git commit --amend --no-edit
 alias grs='git restore --staged'
 alias guc='git reset --soft HEAD~1' # uncommit - removes commit and moves changes back to staging
 alias grvt='git revert HEAD' # create a new commit that undoes the changes made by the last commit
@@ -49,7 +50,7 @@ alias gloga='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%ar) %
 alias greflog='git reflog --date=relative --pretty=format:"%C(yellow)%h%Creset %Cgreen(%cr)%Creset %Creset%gs"'
 
 # Shell aliases (replace OMZ's common-aliases plugin)
-alias mkcd='mkcd' # method defined in .zshrc that makes a new directory and switches to it
+alias mkcd='mkcd' # function defined in .zshrc that makes a new directory and switches to it
 alias ls='ls -AFG' # list all files, trailing slashes, color
 alias lss='ls | sort --ignore-case' # list all files, trailing slashes, sorted by
 alias la="echo 'permissions|lnk|ownr|group| size |  last mod  |  pathname' && ls -AlhFG" # list all files, long format, human-readable file sizes, trailing slashes, color
@@ -63,9 +64,9 @@ alias tree='tree -a -C -d --sort=name --dirsfirst -L'
 alias reload='source ~/.zshrc'
 alias allusers="awk -F':' '{ print \$1 }' /etc/passwd"
 alias humans="awk -F: -v min=\$(awk '/^UID_MIN/ { print \$2 }' /etc/login.defs) '{ if (\$3 >= min) print \$1 }' /etc/passwd"
-alias please='please' # method defined in .zshrc that reruns the last command with sudo
-alias asowner='asowner' # method defined in .zshrc that runs commands in the exact security and environment context of the file's user owner
-alias diff='diff' # method defined in .zshrc that runs diff using bat if available
+alias please='please' # function defined in .zshrc that reruns the last command with sudo
+alias asowner='asowner' # function defined in .zshrc that runs commands in the exact security and environment context of the file's user owner
+alias diff='diff' # function defined in .zshrc that runs diff using bat if available
 
 # Networking
 alias lt='localtunnel' # expose a local port to the internet
@@ -73,7 +74,7 @@ alias myip='curl https://ipinfo.io/json' # public IP info (use /ip for raw IP on
 alias serve='ruby -run -e httpd . -p 8000' # static file server from current directory
 alias ports='lsof -i -P -n | grep LISTEN' # show listening TCP ports with numeric IPs/ports
 alias sniff='sudo lsof -i -P -n' # show all active network sockets (requires sudo)
-alias killdb='killdb' # method defined in .zshrc that force kills a pg db
+alias killdb='killdb' # function defined in .zshrc that force kills a pg db
 
 # Clarity project manager aliases
 alias urgent='clarity list --filter urgency=high --filter urgency=medium --filter urgency=low --sort urgency'
