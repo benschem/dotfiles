@@ -20,6 +20,7 @@ alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 
 ## Git branching
+alias gb='git branch'
 alias gco='git switch'          # more modern git checkout
 alias gcb='git switch --create' # more modern git checkout --branch
 
