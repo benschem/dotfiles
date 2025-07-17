@@ -140,8 +140,8 @@ killdb() {
   fi
 }
 
-## Nicer `git branch` output by calling the shorthand `gb`
-gb() {
+## Nicer `git branch --list` output by calling the shorthand `gbl`
+gbl() {
   # Set variables
   local shorthead localhead upstream_branch prefix
 
