@@ -71,9 +71,6 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
 export SAVEHIST=5000
 
-# Store aliases in the ~/.aliases file and load them here
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-
 # Load completions
 zstyle ':completion:*' rehash true # compinit can be slow without caching
 
@@ -189,6 +186,7 @@ gbl() {
   done
 }
 
+# Use bat with diff for syntax highlighting if available
 diff() {
   if command -v bat >/dev/null 2>&1; then
     command diff -u "$@" | bat --language=diff --style=plain --paging=never --theme=GitHub
@@ -221,3 +219,7 @@ asowner() {
 
   sudo -u "$owner" "${@:2}"
 }
+
+# Store aliases in the ~/.aliases file and load them here
+# Load them below function declarations so you can alias the functions
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
