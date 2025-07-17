@@ -30,10 +30,14 @@
   line-numbers-right-format = "{np:>4}│"
 
 [merge]
-    conflictstyle = zdiff3
+  conflictstyle = zdiff3
+	tool = vscode
+
+[diff]
+	tool = vscode
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [alias]
   # Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
@@ -73,6 +77,3 @@
 [user]
 	email = benschembri@gmail.com
 	name = Ben Schembri
-
-[diff]
-	tool = code
