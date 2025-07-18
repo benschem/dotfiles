@@ -70,6 +70,10 @@ There is a setup script for this - see below.
 
 ### Set up Shell
 
+Install[Starship](https://github.com/starship/starship) prompt.
+
+Install a NerdFont [like this](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#meslo-nerd-font-patched-for-powerlevel10k)
+
 ```zsh
 curl -sS https://starship.rs/install.sh | sh
 ```
@@ -77,8 +81,17 @@ curl -sS https://starship.rs/install.sh | sh
 Clone these plugins into ~/.config/zsh/
 
 ```zsh
+# Allow you to defer loading of plugins to speed up shell
 git clone https://github.com/romkatv/zsh-defer.git $ZSH/zsh-defer
+```
+
+```zsh
+# Syntax highlighting in the prompt
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/zsh-syntax-highlighting
+```
+
+```zsh
+# History substring search
 git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH/zsh-history-substring-search
 ```
 
