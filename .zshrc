@@ -133,8 +133,19 @@ fi
 export EDITOR="${EDITOR:-$VISUAL}"
 export BUNDLER_EDITOR="$EDITOR"
 
+# Find the custom functions location
+# Consider changing how this works later - the alternative would be to symlink them
+if [[ -L "$HOME/.zshrc" ]]; then
+  TARGET="$(readlink "$HOME/.zshrc")"
+  [[ "$TARGET" = /* ]] || TARGET="$HOME/$TARGET"
+  DOTFILES_DIR="$(cd "$(dirname "$TARGET")" && pwd)"
+else
+  echo "Warning: ~/.zshrc is not a symlink. Falling back to \$HOME."
+  DOTFILES_DIR="$HOME"
+fi
+
 # Custom functions
-for f in ./zsh/functions/*.zsh; do
+for f in $DOTFILES_DIR/zsh/functions/*.zsh; do
   source "$f"
 done
 
