@@ -62,7 +62,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Load starship prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+eval "$(starship init zsh --print-full-init)"
 
 # Return to the last directory on a new shell `cd -`
 setopt AUTO_PUSHD
