@@ -17,8 +17,8 @@ gca() {
   local amend_cmd=(git commit --amend)
   $use_no_edit && amend_cmd+=(--no-edit)
 
-  # Run the amend command with any passed flags (e.g. -m)
-  if ! "${amend_cmd[@]}" "$@"; then
+  # Run the amend command
+  if ! "${amend_cmd[@]}"; then
     echo "[ERROR] Amend failed. Aborting push safety check." >&2
     return 1
   fi
