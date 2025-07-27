@@ -4,7 +4,7 @@ alias aliases='command -v bat >/dev/null && bat --language=sh ~/.aliases --style
 # Dev work
 alias be='bundle exec'
 alias test='bundle exec rspec'
-alias docs='bundle exec rspec --format documentation'
+alias docs='bundle exec rspec --format documentation --order defined'
 
 # Git push/pull
 alias gs='git status -sb' # small status with symbols
