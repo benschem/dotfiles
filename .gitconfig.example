@@ -22,9 +22,8 @@
 
 [delta]
   navigate = true # use n and N to move between diff sections
-  dark = true # or light = true, or omit for auto-detection
   line-numbers = true
-	side-by-side = true
+	side-by-side = false
   syntax-theme = Dracula
   line-numbers-left-format = "{nm:>4}│"
   line-numbers-right-format = "{np:>4}│"
