@@ -124,3 +124,7 @@ done
 # Add asdf completions
 fpath=(${ASDF_DIR}/completions $fpath)
 # END ANSIBLE MANAGED BLOCK
+
+# iTerm themes to differentiate between prod/staging/dev
+# https://github.com/chargefox/chargefox-tools?tab=readme-ov-file#awsconsole
+source /Users/benschembri/dev/chargefox-tools/awsconsole/function.zsh
