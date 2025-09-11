@@ -65,8 +65,8 @@ export LC_ALL=en_US.UTF-8
 # eval "$(starship init zsh)"
 eval "$(starship init zsh --print-full-init)"
 
-# Make the up/down keys skip duplicates in history navigation
-setopt HIST_FIND_NO_DUPS
+# Don't save duplicate commands in history
+setopt HIST_IGNORE_ALL_DUPS
 
 # Return to the last directory on a new shell `cd -`
 setopt AUTO_PUSHD
