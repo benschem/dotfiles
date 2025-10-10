@@ -11,7 +11,7 @@ Icon? # The Icon\r file used by Finder (trailing CR)
 .cache/
 
 # Your SSH config
-config
+~/.ssh/config
 
 # Your real gitconfig
 .gitconfig
