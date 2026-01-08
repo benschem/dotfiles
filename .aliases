@@ -1,5 +1,5 @@
 # Note to self: only add aliases you actually use
-alias aliases='command -v bat >/dev/null && bat --language=sh ~/.aliases --style=plain --paging=never || (cat ~/.aliases; echo ""; echo "# [INFO] bat not found. Run: brew install bat for syntax highlighting")'
+alias aliases='command -v bat >/dev/null && bat --language=sh ~/.aliases --style=plain --paging=always --pager="less -R" || (cat ~/.aliases; echo ""; echo "# [INFO] bat not found. Run: brew install bat for syntax highlighting")'
 
 # Dev work
 alias be='bundle exec'
