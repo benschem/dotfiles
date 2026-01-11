@@ -136,33 +136,26 @@ Then:
 - GitHub: Paste in Settings > SSH Keys
 - Server: Paste to `~/.ssh/authorized_keys`
 
-4. Alias commonly accessed servers:
+### Alias commonly accessed servers:
 
-```ssh
-# .ssh/config
+Add a `./.ssh/config` file based on the `.ssh/config.example` file.
 
-# General settings
-Host *
-  UseKeychain yes # macOS only but harmless on Linux
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_ed25519
-
-# Example shortcut to login as root on server
-Host server-root
-  HostName IP_ADDRESS_OF_SERVER
-  User root
-```
-
-So instead of:
+If you alias your server details, then instead of doing:
 
 ```zsh
-ssh root@IP_ADDRESS_OF_SERVER
+ssh user@IP_ADDRESS_OF_SERVER
 ```
 
 You can just do:
 
 ```zsh
-ssh server-root
+ssh servername
+```
+
+or
+
+```zsh
+ssh user@servername
 ```
 
 ## Linux differences

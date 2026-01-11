@@ -3,6 +3,12 @@
 DOTFILES_DIR="$HOME/code/benschem/dotfiles"
 
 mkdir -p "$HOME/.config"
+
+# Symlink ssh config incl server aliases
+touch "$HOME/.ssh/config"
+touch "$DOTFILES_DIR/.ssh/config"
+ln -sf "$DOTFILES_DIR/.ssh/config" "$HOME/.ssh/config"
+
 mkdir -p "$HOME/Library/Application\ Support/Code/User"
 
 ln -sf "$DOTFILES_DIR/.aliases" "$HOME/.aliases"
