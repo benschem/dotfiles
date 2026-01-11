@@ -57,6 +57,12 @@ else
   git -C "$DOTFILES_DIR" pull
 fi
 
+# Remove .gitconfig from the cloned dotfiles repo if it exists
+if [ -f "$DOTFILES_DIR/.gitconfig" ]; then
+  rm -f "$DOTFILES_DIR/.gitconfig"
+  echo "Removed .gitconfig from dotfiles (server-safe)"
+fi
+
 # Symlink dotfiles
 ln -sf "$DOTFILES_DIR/.aliases" "$HOME/.aliases"
 ln -sf "$DOTFILES_DIR/.vimrc"   "$HOME/.vimrc"
