@@ -1,205 +1,37 @@
-# Ben’s Dotfiles
+# Ben’s Sysadmin Dotfiles
 
-This repo contains my personal dotfiles and setup scripts to bootstrap a new Mac or Linux machine with my preferred environment and tools.
+This repo sets up a sysadmin user on an Ubuntu or Fedora server with my preferred shell, prompt and tools.
 
-## MacOS
+## Setup
 
-### Install command line tools
+1. Copy the setup script to the server:
 
-```zsh
-xcode-select --install
+```bash
+scp setup_sysadmin.sh user@SERVER_IP:/home/user/
 ```
 
-### Install homebrew package manager
+2. Log in to the server:
 
-```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```bash
+ssh user@SERVER_IP
 ```
 
-```zsh
-brew update
+3. Make the script executable and run it:
+
+```bash
+chmod +x setup_sysadmin.sh
+bash setup_sysadmin.sh
 ```
 
-### Install software packages:
+4. After the script completes, reload your shell:
 
-```zsh
-brew upgrade git || brew install git
-brew upgrade gh || brew install gh
-brew upgrade wget || brew install wget
-brew upgrade imagemagick || brew install imagemagick
-brew upgrade jq || brew install jq # command line JSON procssor
-brew upgrade openssl || brew install openssl
-```
-
-### Log in to Github CLI
-
-```zsh
-gh auth login -s 'user:email' -w
-```
-
-### Global .gitignore
-
-```zsh
-git config --global core.excludesfile ~/.dotfiles/.gitignore_global
-```
-
-Keeps junk like .DS_Store, .vscode/, etc. out of all repos by default.
-
-### Creating symlinks for dotfiles
-
-Symlinks keep your dotfiles in this repo while allowing tools to read them from their expected locations.
-
-```zsh
-ln -sf ~/code/benschem/dotfiles/zshrc ~/.zshrc
-ln -sf ~/code/benschem/dotfiles/starship.toml ~/.config/starship.toml
-```
-
-Do this for every dotfile in this repo or eventually use the `setup.sh` script.
-
-Everything should go in `~/` except `settings.json` for VSCode and `starship.toml`.
-
-There is a setup script for this - see below.
-
-### Install programming languages
-
-- Install `rbenv` and `ruby`
-- Install `bundler` and global gems: `gem install pry-byebug rake rails rspec rubocop-performance`
-
-- Install `nvm`, `node`, and `yarn`
-- Install `sqlite` and `postgres`
-
-### Set up Shell
-
-Install[Starship](https://github.com/starship/starship) prompt.
-
-Install a NerdFont [like this](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#meslo-nerd-font-patched-for-powerlevel10k)
-
-```zsh
-curl -sS https://starship.rs/install.sh | sh
-```
-
-Clone these plugins into ~/.config/zsh/
-
-```zsh
-# Allow you to defer loading of plugins to speed up shell
-git clone https://github.com/romkatv/zsh-defer.git $ZSH/zsh-defer
-```
-
-```zsh
-# Syntax highlighting in the prompt
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/zsh-syntax-highlighting
-```
-
-```zsh
-# History substring search
-git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH/zsh-history-substring-search
-```
-
-Restart shell:
-
-```zsh
+```bash
 exec zsh
 ```
 
-### Set up SSH
+## Notes
 
-1. Generate a new SSH key pair
-
-```zsh
-ssh-keygen -t ed25519 -C "name@email.com"
-```
-
-2. Add to ssh-agent
-
-```zsh
-eval "$(ssh-agent -s)"
-
-# macOS only (stores key in keychain)
-ssh-add -K ~/.ssh/id_ed25519
-
-# Linux (or fallback)
-ssh-add ~/.ssh/id_ed25519and GitHub:
-```
-
-3. Copy public key
-
-```zsh
-# macOS
-pbcopy < ~/.ssh/id_ed25519.pub
-
-# Linux
-cat ~/.ssh/id_ed25519.pub
-```
-
-Then:
-
-- GitHub: Paste in Settings > SSH Keys
-- Server: Paste to `~/.ssh/authorized_keys`
-
-### Alias commonly accessed servers:
-
-Add a `./.ssh/config` file based on the `.ssh/config.example` file.
-
-If you alias your server details, then instead of doing:
-
-```zsh
-ssh user@IP_ADDRESS_OF_SERVER
-```
-
-You can just do:
-
-```zsh
-ssh servername
-```
-
-or
-
-```zsh
-ssh user@servername
-```
-
-## Linux differences
-
-No need for homebrew or xcode.
-
-Adjust package manager commands as needed:
-
-Fedora:
-
-```zsh
-sudo dnf update -y
-sudo dnf install -y git wget jq curl openssl
-```
-
-Ubuntu/Debian:
-
-```zsh
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y git wget jq curl openssl
-```
-
-## TODO: Set up automatically
-
-TODO: Finish the script `setup.sh` to automate all of the above.
-
-So far it only sets up symlinks.
-
-Setup script will need permission to execute:
-
-```zsh
-chmod +x setup.sh
-```
-
-Then:
-
-```zsh
-zsh setup.sh
-```
-
-## Adding new config
-
-1. Add the file to this repo
-2. Add symlink
-3. Add symlink setup to setup.sh
-4. Update README.md
-5. Commit and push
+- Do not run as root
+- Requires `sudo`
+- Supports Ubuntu, Debian, Fedora
+- Installs: git, curl, zsh, vim (or vim-enhanced on Fedora), bat, ripgrep, Starship prompt, and some zsh plugins.

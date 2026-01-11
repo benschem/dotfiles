@@ -1,9 +1,3 @@
-# Requires:
-# - zsh installed
-# - rbenv, nvm, starship installed
-# - nerd font set in terminal (for starship icons)
-# - .config/zsh with zsh-syntax-highlighting & zsh-history-substring-search cloned manually or symlinked
-
 # Load environment variables
 export ZSH="$HOME/.config/zsh"
 
@@ -19,43 +13,6 @@ source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
 # Add a directory for my own personal tools
 mkdir -p "$HOME/bin"
 export PATH="$HOME/bin:$PATH"
-
-# Add rbenv to the path (to manage Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-
-# "Warm up" rbenv -v so it loads better for starship
-command -v rbenv > /dev/null && zsh-defer eval "$(rbenv init -)"
-
-# Load nvm (to manage node versions)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# Defer setting up nvm auto-switching
-zsh-defer autoload -U add-zsh-hook
-zsh-defer () {
-  load-nvmrc() {
-    if command -v nvm > /dev/null; then
-      local node_version="$(nvm version)"
-      local nvmrc_path="$(nvm_find_nvmrc)"
-
-      if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-          nvm install
-        elif [ "$nvmrc_node_version" != "$node_version" ]; then
-          nvm use --silent
-        fi
-      elif [ "$node_version" != "$(nvm version default)" ]; then
-        nvm use default --silent
-      fi
-    fi
-  }
-
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
-}
 
 # Encoding stuff for the terminal
 export LANG=en_US.UTF-8
@@ -98,14 +55,6 @@ zstyle ':completion:*' auto-menu false
 # Accept exact matches automatically
 zstyle ':completion:*' accept-exact 'true'
 
-# Makes zsh re-read your $PATH to find new executables on tab-completion
-# so that commands you've added to your system recently (like from a brew install) are found without restarting the shell.
-zstyle ':completion:*' rehash true # compinit can be slow without caching
-
-# Autocomplete hostnames you've previously accessed via SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
-
 # This makes Tab and ShiftTab, when pressed on the command line, enter the menu instead of inserting a completion
 complete-and-menu-select() {
   zle complete-word
@@ -119,22 +68,9 @@ bindkey '\e[Z' reverse-menu-complete
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
-export HOMEBREW_NO_ANALYTICS=1
-
 # Determine which text editor to open when an editor is needed
-# Fallback to vim on servers and then nano
-if [ -n "$SSH_CONNECTION" ]; then
-  export VISUAL="${VISUAL:-vim}"
-elif command -v code >/dev/null 2>&1; then
-  export VISUAL="${VISUAL:-code -w}"
-elif command -v vim >/dev/null 2>&1; then
-  export VISUAL="${VISUAL:-vim}"
-else
-  export VISUAL="${VISUAL:-nano}"
-fi
+export VISUAL="${VISUAL:-vim}"
 export EDITOR="${EDITOR:-$VISUAL}"
-export BUNDLER_EDITOR="$EDITOR"
 
 # Find the custom functions location
 # Consider changing how this works later - the alternative would be to symlink them

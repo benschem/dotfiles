@@ -71,12 +71,7 @@ alias asowner='asowner' # function defined in .zshrc that runs commands in the e
 alias diff='diff' # function defined in .zshrc that runs diff using bat if available
 
 # Networking
-alias lt='localtunnel' # expose a local port to the internet
 alias myip='curl https://ipinfo.io/json' # public IP info (use /ip for raw IP only)
-alias serve='ruby -run -e httpd . -p 8000' # static file server from current directory
 alias ports='lsof -i -P -n | grep LISTEN' # show listening TCP ports with numeric IPs/ports
 alias sniff='sudo lsof -i -P -n' # show all active network sockets (requires sudo)
 alias killdb='killdb' # function defined in .zshrc that force kills a pg db
-
-# Clarity project manager aliases
-alias urgent='clarity list --filter urgency=high --filter urgency=medium --filter urgency=low --sort urgency'
