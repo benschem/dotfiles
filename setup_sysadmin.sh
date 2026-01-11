@@ -23,10 +23,10 @@ echo "Detected OS: $PRETTY_NAME"
 
 if [ "$ID" = "ubuntu" ] || [ "$ID" = "debian" ]; then
   sudo apt update
-  sudo apt install -y git curl zsh vim
+  sudo apt install -y git curl zsh vim bat ripgrep tree
 elif [ "$ID" = "fedora" ]; then
   sudo dnf update -y
-  sudo dnf install -y git curl zsh vim-enhanced
+  sudo dnf install -y git curl zsh vim-enhanced bat ripgrep tree
 else
   echo "Unsupported OS: $ID"
   exit 1
