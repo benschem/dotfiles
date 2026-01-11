@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR="$HOME/code/benschem/dotfiles"
+DOTFILES_DIR="$HOME/dotfiles"
 
 # For starship, zsh, yarn, etc
 mkdir -p "$HOME/.config"
@@ -14,7 +14,7 @@ ln -sf "$DOTFILES_DIR/.ssh/config" "$HOME/.ssh/config"
 mkdir -p "$HOME/Library/Application\ Support/Code/User"
 ln -sf "$DOTFILES_DIR/settings.json" "$HOME/Library/Application\ Support/Code/User/settings.json"
 
-# Symlink personal shell command aliases
+# Symlink person personal shell command aliases
 ln -sf "$DOTFILES_DIR/.aliases" "$HOME/.aliases"
 
 # Symlink personal .gitconfig
@@ -22,17 +22,17 @@ ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 
 # Symlink personal .gitignore
 ln -sf "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
+# Symlink zhshrc
 
-# Symlink rspec config
 ln -sf "$DOTFILES_DIR/.rspec" "$HOME/.rspec"
+# Symlink zhshrc
 
-# Symlink vim config
 ln -sf "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
 
-# Symlink zsh config
+# Symlink zhshrc
 ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 
-# Symlink starship config
+# Symlink starship prompt
 ln -sf "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 
 echo "Dotfiles symlinked!"
