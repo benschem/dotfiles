@@ -1,8 +1,13 @@
 # Note to self: only add aliases you actually use
 alias aliases='command -v bat >/dev/null && bat --language=sh ~/.aliases --style=plain --paging=always --pager="less -R" || (cat ~/.aliases; echo ""; echo "# [INFO] bat not found. Run: brew install bat for syntax highlighting")'
 
-# Dev work
+# Bundler
 alias be='bundle exec'
+alias bi='bundle install'
+alias bu='bundle update'
+alias buu='bundle update --bundler'
+
+# Rspec
 alias test='bundle exec rspec --format progress --order rand'
 alias docs='bundle exec rspec --format documentation --order defined'
 
