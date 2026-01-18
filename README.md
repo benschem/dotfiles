@@ -1,8 +1,12 @@
 # Ben’s Dotfiles
 
-This repo contains my personal dotfiles and setup scripts to bootstrap a new Mac or Linux machine with my preferred environment and tools.
+This repo contains my personal dotfiles and setup scripts to bootstrap a new Mac or Linux machine with my preferred development environment and tools.
 
-## MacOS
+## Production environment
+
+For setting up dotfiles on a server, see branch [sysadmin](https://github.com/benschem/dotfiles/tree/sysadmin)
+
+## Development environment - MacOS
 
 ### Install command line tools
 
