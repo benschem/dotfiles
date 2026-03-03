@@ -67,7 +67,7 @@ alias grep='grep --color' # highlight matching text in grep output
 alias hgrep='fc -El 0 | grep' # searches for a given word in the previously used commands
 alias ff='find . -type f -name' # find files with given name
 alias help='man' # use 'help' to open manual pages
-alias tree='tree -a -C -d --sort=name --dirsfirst -L'
+alias tree='tree -a -C --sort=name --dirsfirst'
 alias reload='source ~/.zshrc'
 alias allusers="awk -F':' '{ print \$1 }' /etc/passwd"
 alias humans="awk -F: -v min=\$(awk '/^UID_MIN/ { print \$2 }' /etc/login.defs) '{ if (\$3 >= min) print \$1 }' /etc/passwd"
