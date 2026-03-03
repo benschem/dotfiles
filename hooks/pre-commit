@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Copy this file to .git/hooks/pre-commit in the chargefox repo
+# and make it executable: chmod +x .git/hooks/pre-commit
+
+# Get staged Ruby files, excluding deleted files
+#   --cached        = only look at staged changes, not the working tree
+#   --name-only     = just output file paths, no diff content
+#   --diff-filter=d = exclude deleted files (lowercase d = exclude)
+staged_files=$(git diff --cached --name-only --diff-filter=d -- '*.rb')
+
+# Nothing to lint
+if [ -z "$staged_files" ]; then
+  exit 0
+fi
+
+echo "Running rubocop -A on staged Ruby files..."
+
+# Auto-correct staged files
+# --force-exclusion makes rubocop respect its Exclude config
+# even when files are passed as explicit arguments
+bundle exec rubocop -A --force-exclusion $staged_files
+
+# Re-stage the files so rubocop's fixes are included in the commit
+echo "$staged_files" | xargs git add
+
+# Run rubocop one more time without -A
+# If anything is still wrong, rubocop exits non-zero which fails the commit
+bundle exec rubocop --force-exclusion $staged_files
