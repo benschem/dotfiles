@@ -11,8 +11,8 @@ touch "$DOTFILES_DIR/.ssh/config"
 ln -sf "$DOTFILES_DIR/.ssh/config" "$HOME/.ssh/config"
 
 # Symlink VS Code user configuration, such as settings, keybindings, and profiles.
-mkdir -p "$HOME/Library/Application\ Support/Code/User"
-ln -sf "$DOTFILES_DIR/settings.json" "$HOME/Library/Application\ Support/Code/User/settings.json"
+mkdir -p "$HOME/Library/Application Support/Code/User"
+ln -sf "$DOTFILES_DIR/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 
 # Symlink personal shell command aliases
 ln -sf "$DOTFILES_DIR/.aliases" "$HOME/.aliases"

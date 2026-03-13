@@ -35,7 +35,7 @@
     "public/packs": true,
     "tmp": true
   },
-  "files.hotExit": "off",
+  "files.hotExit": "onExit",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
@@ -46,9 +46,6 @@
     "**/node_modules/**": true,
     "**/tmp/**": true,
     "**/vendor/**": true
-  },
-  "ruby.lint": {
-    "rubocop": true
   },
   "search.exclude": {
     // Inherits all glob patterns from the `files.exclude` setting.
@@ -66,22 +63,18 @@
   "workbench.panel.defaultLocation": "right",
   "editor.renderWhitespace": "trailing",
   "workbench.editor.untitled.hint": "hidden",
-  "editor.minimap.enabled": false,
-  "workbench.activityBar.visible": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.formatOnSave": true,
   "prettier.enableDebugLogs": false,
   "sass.format.convert": false,
-  "liveServer.settings.CustomBrowser": "firefox",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "liveServer.settings.donotShowInfoMsg": true,
   "tailwindCSS.emmetCompletions": true,
   "editor.accessibilitySupport": "off",
   "editor.inlayHints.enabled": "on",
@@ -111,8 +104,7 @@
   "editor.wordWrapColumn": 120,
   "prettier.printWidth": 120,
   "prettier.singleAttributePerLine": true,
-  "indentRainbow.indicatorStyle": "light",
-  "cssvar.files": ["**/*.css", "./node_modules/open-props/open-props.min.css"],
+  "cssvar.files": ["**/*.css"],
   "cssvar.ignore": [],
   "update.showReleaseNotes": false,
   "explorer.confirmPasteNative": false,
@@ -122,5 +114,45 @@
   "css.lint.duplicateProperties": "warning",
   "css.lint.float": "warning",
   "css.lint.hexColorLength": "warning",
-  "css.autoValidation": "Always"
+  "css.autoValidation": "Always",
+  "workbench.activityBar.location": "hidden",
+  "rubyLsp.enabledFeatures": {
+    "codeActions": true,
+    "diagnostics": true,
+    "documentHighlights": true,
+    "documentLink": true,
+    "documentSymbols": true,
+    "foldingRanges": true,
+    "formatting": true,
+    "hover": true,
+    "inlayHint": true,
+    "onTypeFormatting": true,
+    "selectionRanges": true,
+    "semanticHighlighting": true,
+    "completion": true,
+    "codeLens": false,
+    "definition": true,
+    "workspaceSymbol": true,
+    "signatureHelp": true,
+    "typeHierarchy": true
+  },
+  "workbench.layoutControl.enabled": false,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.size": "fit",
+  "files.autoSave": "afterDelay",
+  "indentRainbow.errorColor": "rgba(128,32,32,0.1)",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.format.enable": true,
+  "eslint.useFlatConfig": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "rubyLsp.linters": ["rubocop"],
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "diffEditor.ignoreTrimWhitespace": false
 }
