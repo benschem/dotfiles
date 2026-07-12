@@ -58,6 +58,8 @@ alias greflog='git reflog --date=relative --pretty=format:"%C(yellow)%h%Creset %
 
 # Shell aliases (replace OMZ's common-aliases plugin)
 alias mkcd='mkcd' # function defined in .zshrc that makes a new directory and switches to it
+alias cp='cp -i' # prompt before overwriting existing files
+alias mv='mv -i' # prompt before overwriting existing files
 alias ls='ls -AFG' # list all files, trailing slashes, color
 alias lss='ls | sort --ignore-case' # list all files, trailing slashes, sorted by
 alias la="echo 'permissions|lnk|ownr|group| size |  last mod  |  pathname' && ls -AlhFG" # list all files, long format, human-readable file sizes, trailing slashes, color
