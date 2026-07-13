@@ -4,6 +4,13 @@
 # - nerd font set in terminal (for starship icons)
 # - .config/zsh with zsh-syntax-highlighting & zsh-history-substring-search cloned manually or symlinked
 
+# Load Homebrew (ARM on Apple Silicon, x86 on Intel)
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # Load environment variables
 export ZSH="$HOME/.config/zsh"
 
