@@ -25,7 +25,7 @@ source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Add a directory for my own personal tools
 mkdir -p "$HOME/bin"
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 # Add rbenv to the path (to manage Ruby versions)
 export PATH="${HOME}/.rbenv/bin:${PATH}"
