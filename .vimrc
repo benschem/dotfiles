@@ -61,4 +61,4 @@ set sidescrolloff=5
 set list
 set listchars=tab:▸\ ,trail:·
 
-colorscheme pablo
+colorscheme embark
