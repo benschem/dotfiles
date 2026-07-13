@@ -1,5 +1,5 @@
 # Run commands in the exact security and environment context of the file's user owner
-asowner() {
+function asowner {
   if [ ! -e "$1" ]; then
     echo "File '$1' does not exist" >&2
     return 1

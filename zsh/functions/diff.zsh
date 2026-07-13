@@ -1,5 +1,5 @@
 # Use bat with diff for syntax highlighting if available
-diff() {
+function diff {
   if command -v bat >/dev/null 2>&1; then
     command diff -u "$@" | bat --language=diff --style=plain --paging=never --theme=GitHub
   else

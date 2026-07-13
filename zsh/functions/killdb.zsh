@@ -1,5 +1,5 @@
 ## For when you try to drop a postges db and it won't let you.
-killdb() {
+function killdb {
   if [ -z "$1" ]; then
     echo "Usage: killdb YourAppName"
   else

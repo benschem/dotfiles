@@ -1,4 +1,4 @@
-whatchanged() {
+function whatchanged {
   local branch
 
   # If argument given, compare to that branch, otherwise use master or main

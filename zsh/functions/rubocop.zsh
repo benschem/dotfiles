@@ -1,5 +1,5 @@
 # Never call the global rubocop in a rails project by accident again.
-rubocop() {
+function rubocop {
   # Avoid infinite recursion if already inside `bundle exec` or rubocop function
   # Necessary in case I accidently type `be rubocop` or `bundle exec rubocop`
   if [[ "${FUNCNAME[1]}" == "rubocop" ]] || [ -n "$BUNDLER_ORIG_MANPATH" ]; then

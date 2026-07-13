@@ -1,5 +1,5 @@
 ## Nicer `git branch --list` output by calling the shorthand `gbl`
-gbl() {
+function gbl {
   # Set variables
   local shorthead localhead upstream_branch prefix
 
