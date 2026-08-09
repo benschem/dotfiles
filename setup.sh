@@ -108,6 +108,17 @@ mkdir -p "$HOME/.config" "$HOME/.local/bin" "$HOME/bin"
 # script takes seconds. Re-running setup.sh to pick up one new symlink shouldn't
 # mean waiting for Homebrew.
 if [[ "$WITH_PACKAGES" -eq 1 ]]; then
+  # Put the native Homebrew first, exactly as .zshrc does. Both prefixes can
+  # exist on an Apple Silicon Mac - /opt/homebrew native, /usr/local under
+  # Rosetta - and /usr/local/bin comes earlier on the default PATH, so a bare
+  # `brew` here would quietly install x86 builds on an ARM machine. This script
+  # doesn't read .zshrc, so it has to make the same choice itself.
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+
   if command -v brew >/dev/null; then
     # Homebrew refuses to load formulae from untrusted third-party taps, and
     # that aborts the whole Brewfile rather than skipping the one entry. These
