@@ -1,0 +1,13 @@
+# Template for ~/.gitconfig.local - machine-local git settings.
+#
+# Both setup scripts copy this to ~/.gitconfig.local if it isn't already there,
+# and never touch it again. It is not symlinked, so each machine's copy can
+# differ. setup.sh also appends an include of .gitconfig.workstation here.
+#
+# This is the file to edit on a work machine: change the identity below, or
+# comment out the [user] block entirely so git refuses to commit until you set
+# it per-repo. That beats accidentally authoring work commits as this address.
+
+[user]
+  email = benschembri@gmail.com
+  name = Ben Schembri

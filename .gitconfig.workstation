@@ -1,0 +1,17 @@
+# Workstation git settings for anything that needs a GUI.
+#
+# Not included by .gitconfig directly, because git resolves a relative include
+# path against the *symlink's* location (~/) rather than the real file, so it
+# can't reach back into this repo. setup.sh instead appends an include of this
+# file, by absolute path, to ~/.gitconfig.local.
+#
+# On a server none of this is reachable, which is the point.
+
+[core]
+  editor = code --wait
+
+[merge]
+  tool = vscode
+
+[diff]
+  tool = vscode

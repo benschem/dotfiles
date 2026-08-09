@@ -1,3 +1,16 @@
+# Portable git config - everything here works on a workstation and a headless
+# server alike. Symlinked to ~/.gitconfig on every machine.
+#
+# Two things are deliberately NOT here:
+#   - Identity, and anything else that varies per machine, lives in
+#     ~/.gitconfig.local (see .gitconfig.local.example). Never committed, so the
+#     work machine can differ from this one.
+#   - GUI-only settings (VS Code as editor and merge tool) live in
+#     .gitconfig.workstation, included from ~/.gitconfig.local by setup.sh.
+#
+# Later values win, and the include at the bottom is last, so both of those
+# override anything set here.
+
 [color]
   branch = auto       # enable color in branch output when running in a terminal
   diff = auto         # colorize diffs for easier identification of changes
@@ -15,25 +28,25 @@
 [core]
   # pager = less -FRX # https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager
   pager = delta
-  editor = code --wait
 
-  # global .gitignore file that will apply automatically to all repos
-	excludesfile = /Users/Ben/.gitignore
+  # Portable default. The workstation include upgrades this to `code --wait`.
+  editor = vim
+
+  # Global .gitignore that applies automatically to all repos. Must stay
+  # relative to ~ - a hardcoded /Users/Ben breaks on servers, on a work machine
+  # with a different username, and on any future Mac.
+  excludesfile = ~/.gitignore
 
 [delta]
   navigate = true # use n and N to move between diff sections
   line-numbers = true
-	side-by-side = false
+  side-by-side = false
   syntax-theme = Dracula
   line-numbers-left-format = "{nm:>4}│"
   line-numbers-right-format = "{np:>4}│"
 
 [merge]
   conflictstyle = zdiff3
-	tool = vscode
-
-[diff]
-	tool = vscode
 
 [interactive]
   diffFilter = delta --color-only
@@ -52,7 +65,6 @@
   defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4  ## Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
   remoteSetHead = remote set-head origin --auto ## Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)
 
-
 [help]
   autocorrect = 2 # Correct with no delay
 
@@ -68,11 +80,10 @@
   rebase = true # Rebase (instead of merge) on pull to keep git history cleaner
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
-# My Github identity
-# Comment this out to disable pull and push from this account
-# REMINDER: comment this out on the work machine
-[user]
-	email = benschembri@gmail.com
-	name = Ben Schembri
+# Machine-local settings: identity, and on a workstation an include of
+# .gitconfig.workstation. Git silently ignores this if the file doesn't exist.
+# Must come last so it can override anything above.
+[include]
+  path = ~/.gitconfig.local

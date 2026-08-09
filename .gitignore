@@ -12,8 +12,6 @@ Icon? # The Icon\r file used by Finder (trailing CR)
 # Don't commit SSH config secrets
 .ssh/config
 
-# Your real gitconfig
-.gitconfig
 
 **/.claude/settings.local.json
 
