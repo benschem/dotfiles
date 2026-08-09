@@ -117,7 +117,7 @@ if [[ "$WITH_PACKAGES" -eq 1 ]]; then
     # Trust is stored per-machine in ~/.homebrew/trust.json, not in this repo,
     # so it has to be re-established on every new machine. Hence doing it here
     # rather than by hand once.
-    for tap in heroku/brew sass/sass; do
+    for tap in heroku/brew sass/sass dart-lang/dart; do
       brew trust --tap "$tap" || echo "WARNING: could not trust tap $tap"
     done
 

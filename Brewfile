@@ -10,8 +10,6 @@
 
 tap "dart-lang/dart"
 tap "heroku/brew"
-tap "homebrew/cask-fonts"
-tap "homebrew/services"
 tap "sass/sass"
 # Zstandard is a real-time compression algorithm
 brew "zstd"
@@ -81,6 +79,8 @@ brew "wget"
 brew "wimlib"
 # JavaScript package manager
 brew "yarn"
+# Programming language for building web, server and mobile apps
+brew "dart-lang/dart/dart"
 # Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
 # Stylesheet Preprocessor
