@@ -1,0 +1,12 @@
+[Unit]
+Description=Prune BuildKit build cache older than 30 days
+Documentation=https://github.com/benschem/dotfiles
+
+[Service]
+Type=oneshot
+# %h is systemd's specifier for the user's home directory, so this unit works
+# whatever the username is.
+ExecStart=%h/.local/bin/prune-buildx-cache.sh
+
+# The script writes its own log and always exits 0 (a missing docker daemon is
+# a normal outcome, not a failure), so there is nothing to catch here.

@@ -1,0 +1,7 @@
+[worker.oci]
+  gc = true
+  # Cap total build cache well below the disk-proportional default (~20GB).
+  reservedSpace = "1GB"
+  maxUsedSpace = "8GB"
+  # Back off aggressively when the disk gets tight.
+  minFreeSpace = "25GB"

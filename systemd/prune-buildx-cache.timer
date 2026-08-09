@@ -1,0 +1,17 @@
+[Unit]
+Description=Weekly BuildKit build cache prune
+
+[Timer]
+# Sundays at 11am, matching the macOS LaunchAgent.
+OnCalendar=Sun *-*-* 11:00:00
+
+# Run on next boot if the machine was off when the timer was due. launchd does
+# this for free; systemd needs to be asked.
+Persistent=true
+
+# Nothing here is time-critical, and a spread stops every box that shares this
+# config from hitting the Docker daemon at the same instant.
+RandomizedDelaySec=15m
+
+[Install]
+WantedBy=timers.target

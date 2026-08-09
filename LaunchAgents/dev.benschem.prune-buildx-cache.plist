@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>dev.benschem.prune-buildx-cache</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/Ben/.local/bin/prune-buildx-cache.sh</string>
+    </array>
+
+    <!-- Sundays at 11am. If the Mac is asleep then, launchd runs it on wake. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>0</integer>
+        <key>Hour</key>
+        <integer>11</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- The script does its own logging; these catch anything that escapes it. -->
+    <key>StandardErrorPath</key>
+    <string>/Users/Ben/Library/Logs/prune-buildx-cache.launchd.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>
