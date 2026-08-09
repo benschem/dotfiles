@@ -14,3 +14,11 @@ Icon? # The Icon\r file used by Finder (trailing CR)
 
 # Your real gitconfig
 .gitconfig
+
+**/.claude/settings.local.json
+
+# Claude Code: never track secrets/state if more of ~/.claude ever gets symlinked in
+.claude/.credentials.json
+.claude/history.jsonl
+.claude/projects/
+.claude/sessions/
