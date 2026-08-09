@@ -60,10 +60,14 @@ alias greflog='git reflog --date=relative --pretty=format:"%C(yellow)%h%Creset %
 alias mkcd='mkcd' # function defined in .zshrc that makes a new directory and switches to it
 alias cp='cp -i' # prompt before overwriting existing files
 alias mv='mv -i' # prompt before overwriting existing files
-alias ls='ls -AFG' # list all files, trailing slashes, color
+# Use --color=auto, not -G. Both BSD (macOS) and GNU (Linux) ls accept it, while
+# -G means "colour" on BSD but "hide the group column" on GNU — so -G silently
+# dropped the colour on Linux, and knocked the `la` header out of alignment by
+# removing the group column it labels.
+alias ls='ls -AF --color=auto' # list all files, trailing slashes, color
 alias lss='ls | sort --ignore-case' # list all files, trailing slashes, sorted by
-alias la="echo 'permissions|lnk|ownr|group| size |  last mod  |  pathname' && ls -AlhFG" # list all files, long format, human-readable file sizes, trailing slashes, color
-alias ldot='ls -ldG .*' # list metadata for dotfiles/directories only (not contents)
+alias la="echo 'permissions|lnk|ownr|group| size |  last mod  |  pathname' && ls -AlhF --color=auto" # list all files, long format, human-readable file sizes, trailing slashes, color
+alias ldot='ls -ldF --color=auto .*' # list metadata for dotfiles/directories only (not contents)
 alias lsize='du -sh .' # size of current directory, human-readable
 alias grep='grep --color' # highlight matching text in grep output
 alias hgrep='fc -El 0 | grep' # searches for a given word in the previously used commands
