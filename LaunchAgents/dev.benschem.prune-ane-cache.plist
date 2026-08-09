@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>dev.benschem.prune-ane-cache</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/Ben/.local/bin/prune-ane-cache.sh</string>
+    </array>
+
+    <!-- Sundays at 11:15am, quarter of an hour after the buildx prune so the
+         two aren't hammering the disk at the same moment. If the Mac is asleep
+         then, launchd runs it on wake. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>0</integer>
+        <key>Hour</key>
+        <integer>11</integer>
+        <key>Minute</key>
+        <integer>15</integer>
+    </dict>
+
+    <!-- The script does its own logging; this catches anything that escapes it. -->
+    <key>StandardErrorPath</key>
+    <string>/Users/Ben/Library/Logs/prune-ane-cache.launchd.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>
