@@ -10,7 +10,7 @@
   "editor.showFoldingControls": "always",
   "editor.snippetSuggestions": "top",
   "emmet.includeLanguages": {
-    "erb": "html"
+    "erb": "html",
   },
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": true,
@@ -33,7 +33,6 @@
     "log": true,
     "node_modules": true,
     "public/packs": true,
-    "tmp": true
   },
   "files.hotExit": "onExit",
   "files.insertFinalNewline": true,
@@ -45,11 +44,11 @@
     "**/log/**": true,
     "**/node_modules/**": true,
     "**/tmp/**": true,
-    "**/vendor/**": true
+    "**/vendor/**": true,
   },
   "search.exclude": {
     // Inherits all glob patterns from the `files.exclude` setting.
-    "**/.venv": true
+    "**/.venv": true,
   },
   "telemetry.telemetryLevel": "off",
   "window.restoreWindows": "none",
@@ -64,32 +63,32 @@
   "editor.renderWhitespace": "trailing",
   "workbench.editor.untitled.hint": "hidden",
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.formatOnSave": true,
   "prettier.enableDebugLogs": false,
   "sass.format.convert": false,
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "tailwindCSS.emmetCompletions": true,
   "editor.accessibilitySupport": "off",
   "editor.inlayHints.enabled": "on",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#1073cf2d",
-    "editor.lineHighlightBorder": "#9fced11f"
+    "editor.lineHighlightBorder": "#9fced11f",
   },
   "editor.wordWrap": "off",
   "diffEditor.wordWrap": "off",
   "editor.guides.indentation": true,
   "[erb]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
   "files.associations": {
-    "*.erb": "erb"
+    "*.erb": "erb",
   },
   "workbench.editor.empty.hint": "hidden",
   "diffEditor.renderSideBySide": true,
@@ -134,7 +133,7 @@
     "definition": true,
     "workspaceSymbol": true,
     "signatureHelp": true,
-    "typeHierarchy": true
+    "typeHierarchy": true,
   },
   "workbench.layoutControl.enabled": false,
   "editor.minimap.renderCharacters": false,
@@ -142,17 +141,17 @@
   "files.autoSave": "afterDelay",
   "indentRainbow.errorColor": "rgba(128,32,32,0.1)",
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "eslint.format.enable": true,
   "eslint.useFlatConfig": true,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "explicit",
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "rubyLsp.linters": ["rubocop"],
-  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.colorTheme": "Bearded Theme Vivid Black",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
 }
