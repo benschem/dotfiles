@@ -133,7 +133,7 @@ echo "Symlinking config..."
 
 link "$DOTFILES_DIR/.aliases" "$HOME/.aliases"
 link "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
-link "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
+link "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global"
 
 # Caps the Docker build cache. Belongs here rather than only on workstations:
 # the prune timer below is installed on servers too, and the cap is the other

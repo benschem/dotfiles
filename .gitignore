@@ -1,21 +1,14 @@
-# MacOS system files
-.DS_Store
-.Trashes
-Icon? # The Icon\r file used by Finder (trailing CR)
+# Ignores for THIS repo only.
+#
+# Machine-wide junk (.DS_Store, tool caches) lives in .gitignore_global, which
+# is symlinked to ~/.gitignore_global and applies everywhere. Everything below
+# is specific to the dotfiles repo, which is why it isn't in that file: these
+# paths only exist here because parts of ~ get symlinked back into the repo.
 
-# Editor and tools
-.bundle/
-.nvm/
-.npm/
-.cache/
-
-# Don't commit SSH config secrets
+# Server aliases and connection details
 .ssh/config
 
-
-**/.claude/settings.local.json
-
-# Claude Code: never track secrets/state if more of ~/.claude ever gets symlinked in
+# Claude Code secrets and state, in case more of ~/.claude ever gets symlinked in
 .claude/.credentials.json
 .claude/history.jsonl
 .claude/projects/

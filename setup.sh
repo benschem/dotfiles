@@ -184,8 +184,10 @@ if ! grep -qE '^[[:space:]]*path[[:space:]]*=.*gitconfig\.workstation' "$HOME/.g
   echo "Added the workstation include to ~/.gitconfig.local"
 fi
 
-# Symlink personal .gitignore
-link "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
+# Symlink the global gitignore that .gitconfig's excludesfile points at. Note
+# this is .gitignore_global, not this repo's own .gitignore - see Git config in
+# the README for why they're separate.
+link "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global"
 
 # Symlink rspec config
 link "$DOTFILES_DIR/.rspec" "$HOME/.rspec"

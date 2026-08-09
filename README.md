@@ -36,7 +36,7 @@ That takes seconds and only touches config. To also install every package in the
 
 ### What it does
 
-- Symlinks config into place: `.zshrc`, `.aliases`, `.gitconfig`, `.gitignore`, `.vimrc`, `.rspec`, `starship.toml`, VS Code `settings.json`, `.ssh/config`, and the Claude Code config plus the skills I wrote
+- Symlinks config into place: `.zshrc`, `.aliases`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.rspec`, `starship.toml`, VS Code `settings.json`, `.ssh/config`, and the Claude Code config plus the skills I wrote
 - Seeds `~/.gitconfig.local` with my identity, and wires in the workstation-only git settings (see Git config below)
 - Clones the three zsh plugins and installs starship
 - Symlinks everything in `bin/` onto `PATH` via `~/.local/bin`
@@ -151,6 +151,19 @@ Two things worth knowing if you change this:
 - **The workstation include has to be appended by `setup.sh`, not declared in `.gitconfig`.** Git resolves a relative include path against the *symlink's* directory (`~/`), not the real file, so `path = .gitconfig.workstation` silently finds nothing and the whole layer vanishes without an error. An absolute path works, and it's only knowable at setup time.
 
 Check what actually resolved with `git config --list --show-origin`. Note that `git config --global --list` will *not* show included values — it reads that one file only, which makes an include look broken when it isn't.
+
+### Two gitignores, deliberately
+
+- `.gitignore_global` — symlinked to `~/.gitignore_global` and wired up by `excludesfile`. Applies to **every repo on the machine**: `.DS_Store`, tool caches, `**/.claude/settings.local.json`.
+- `.gitignore` — this repo only. `.ssh/config` and the Claude Code state paths, which exist here purely because parts of `~` get symlinked back in.
+
+These used to be one file, symlinked to `~/.gitignore` and doing both jobs. That meant `.ssh/config` was silently ignored in *every* repo — so any project with that path would never show up in `git status`, with nothing in the project to explain why.
+
+The rule: a pattern only belongs in `.gitignore_global` if it's junk in any repo anywhere. When something is ignored and you can't see why:
+
+```zsh
+git check-ignore -v path/to/file
+```
 
 ## Maintenance jobs
 

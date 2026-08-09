@@ -1,0 +1,25 @@
+# Global gitignore - applies to EVERY repo on this machine.
+#
+# Symlinked to ~/.gitignore_global and wired up by .gitconfig:
+#
+#   [core]
+#     excludesfile = ~/.gitignore_global
+#
+# Only put things here that are junk in any repo, anywhere. Anything specific to
+# a project belongs in that project's own .gitignore - a pattern here silently
+# affects every repo you touch, and there's no indication in the project that
+# it's happening.
+
+# MacOS system files
+.DS_Store
+.Trashes
+Icon? # The Icon\r file used by Finder (trailing CR)
+
+# Tool caches that no project should ever commit
+.bundle/
+.nvm/
+.npm/
+.cache/
+
+# Claude Code writes this into any project it's used in, and it's per-machine
+**/.claude/settings.local.json

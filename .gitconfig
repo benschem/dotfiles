@@ -32,10 +32,13 @@
   # Portable default. The workstation include upgrades this to `code --wait`.
   editor = vim
 
-  # Global .gitignore that applies automatically to all repos. Must stay
-  # relative to ~ - a hardcoded /Users/Ben breaks on servers, on a work machine
-  # with a different username, and on any future Mac.
-  excludesfile = ~/.gitignore
+  # Applies automatically to all repos. Points at .gitignore_global, NOT at this
+  # repo's own .gitignore - those are deliberately separate, so a rule meant for
+  # the dotfiles repo can't silently start ignoring files in every other repo.
+  #
+  # Must stay relative to ~ - a hardcoded /Users/Ben breaks on servers, on a work
+  # machine with a different username, and on any future Mac.
+  excludesfile = ~/.gitignore_global
 
 [delta]
   navigate = true # use n and N to move between diff sections
