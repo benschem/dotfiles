@@ -150,14 +150,22 @@ if [[ -L "$HOME/.zshrc" ]]; then
   [[ "$TARGET" = /* ]] || TARGET="$HOME/$TARGET"
   DOTFILES_DIR="$(cd "$(dirname "$TARGET")" && pwd)"
 else
-  echo "Warning: ~/.zshrc is not a symlink. Falling back to \$HOME."
-  DOTFILES_DIR="$HOME"
+  # Don't fall back to $HOME - there are no functions there, so the glob below
+  # would fail rather than quietly find nothing.
+  echo "Warning: ~/.zshrc is not a symlink, so custom functions won't load."
+  DOTFILES_DIR=""
 fi
 
-# Custom functions
-for f in $DOTFILES_DIR/zsh/functions/*.zsh; do
-  source "$f"
-done
+# Custom functions.
+#
+# The (N) qualifier matters: without it an unmatched glob is a hard error in
+# zsh, and that aborts the REST of this file - so one missing directory would
+# also cost you the aliases sourced below, leaving a half-configured shell.
+if [[ -n "$DOTFILES_DIR" ]]; then
+  for f in $DOTFILES_DIR/zsh/functions/*.zsh(N); do
+    source "$f"
+  done
+fi
 
 # Store aliases in the ~/.aliases file and load them here
 # Load them below function declarations so you can alias the functions
