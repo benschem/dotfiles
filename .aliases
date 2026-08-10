@@ -74,6 +74,7 @@ alias hgrep='fc -El 0 | grep' # searches for a given word in the previously used
 alias ff='find . -type f -name' # find files with given name
 alias help='man' # use 'help' to open manual pages
 alias tree='tree -a -C --sort=name --dirsfirst'
+alias treed='tree -a -C -d --sort=name --dirsfirst -L' # directories only, needs a depth: treed 2
 alias reload='exec zsh'
 alias allusers="awk -F':' '{ print \$1 }' /etc/passwd"
 alias humans="awk -F: -v min=\$(awk '/^UID_MIN/ { print \$2 }' /etc/login.defs) '{ if (\$3 >= min) print \$1 }' /etc/passwd"
