@@ -1,30 +1,25 @@
-# This file includes:
-# All brew install formulae you have installed
-# All brew install --cask apps you installed
-
+# Everything Homebrew installs on a workstation: taps, formulae, casks and
+# VS Code extensions.
+#
+# Only explicitly-installed formulae are listed - `brew bundle dump` records
+# leaves, not the dependency tree, so plenty more gets pulled in on restore.
+#
 # Restore with:
-# brew bundle --file=~/code/dotfiles/Brewfile
+#   brew bundle --file=~/code/benschem/dotfiles/Brewfile
+# or just run ./setup.sh --with-packages
+#
+# After installing something new, refresh this file with:
+#   brew bundle dump --file=~/code/benschem/dotfiles/Brewfile --force --describe
+#
+# Note: dump discards these comments, so paste them back afterwards.
 
-# When you install a new package, update Brewfile with:
-# brew bundle dump --file=./Brewfile --force --describe
-
-tap "dart-lang/dart"
-tap "heroku/brew"
-tap "sass/sass"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
-# Color management engine supporting ICC profiles
-brew "little-cms2"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
-# New file format for still image compression
-brew "jpeg-xl"
-# Codec library for encoding and decoding AV1 video streams
-brew "aom"
+tap "dart-lang/dart", trusted: true
+tap "heroku/brew", trusted: true
+tap "sass/sass", trusted: true
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Core application library for C
-brew "glib"
+# New way of working with Protocol Buffers
+brew "buf"
 # GitHub command-line tool
 brew "gh"
 # Interpreter for PostScript and PDF
@@ -33,40 +28,32 @@ brew "ghostscript"
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
-# Open h.265 video codec implementation
-brew "libde265"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
-# H.265/HEVC encoder
-brew "x265"
-# ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
-brew "libheif"
-# Tools and libraries to manipulate images in many formats
-brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Network authentication protocol
-brew "krb5"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Postgres C API library
 brew "libpq"
 # C implementation of a Sass compiler
 brew "libsass"
-# YAML Parser
-brew "libyaml"
 # Next-gen compiler infrastructure
 brew "llvm"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
+# Clone of ls with colorful output, file type icons, and more
+brew "lsd"
+# Process manager for Procfile-based applications and tmux
+brew "overmind"
 # Object-relational database system
-brew "postgresql@14", restart_service: :changed
-# Object-relational database system
-brew "postgresql@15", restart_service: :changed
+brew "postgresql@15", restart_service: :changed, link: true
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
-# Install various Ruby versions and implementations
-brew "ruby-build"
 # Ruby version manager
 brew "rbenv"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# SMART hard drive monitoring
+brew "smartmontools"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Display directories as trees (with optional color/HTML output)
@@ -77,14 +64,18 @@ brew "vips"
 brew "wget"
 # Library to create, extract, and modify Windows Imaging files
 brew "wimlib"
+# Utilities to create and convert Web Open Font File (WOFF) files
+brew "woff2"
 # JavaScript package manager
 brew "yarn"
-# Programming language for building web, server and mobile apps
-brew "dart-lang/dart/dart"
+# SDK
+brew "dart-lang/dart/dart", trusted: true
 # Everything you need to get started with Heroku
-brew "heroku/brew/heroku"
+brew "heroku/brew/heroku", trusted: true
 # Stylesheet Preprocessor
-brew "sass/sass/sass"
+brew "sass/sass/sass", trusted: true
+# Automated testing of webapps for Google Chrome
+cask "chromedriver"
 cask "font-source-code-pro-for-powerline"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"
@@ -129,3 +120,4 @@ vscode "viktorqvarfordt.vscode-pitch-black-theme"
 vscode "vincaslt.highlight-matching-tag"
 vscode "zignd.html-css-class-completion"
 vscode "zneuray.erb-vscode-snippets"
+npm "corepack"

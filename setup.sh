@@ -143,18 +143,6 @@ if [[ "$WITH_PACKAGES" -eq 1 ]]; then
   fi
 
   if command -v brew >/dev/null; then
-    # Homebrew refuses to load formulae from untrusted third-party taps, and
-    # that aborts the whole Brewfile rather than skipping the one entry. These
-    # two are the only taps in it with formulae (heroku, sass) - I barely use
-    # either, but trusting them keeps `brew bundle` working.
-    #
-    # Trust is stored per-machine in ~/.homebrew/trust.json, not in this repo,
-    # so it has to be re-established on every new machine. Hence doing it here
-    # rather than by hand once.
-    for tap in heroku/brew sass/sass dart-lang/dart; do
-      brew trust --tap "$tap" || echo "WARNING: could not trust tap $tap"
-    done
-
     echo "Installing packages from Brewfile..."
     # Don't abort the whole run over one failure. Third-party taps in particular
     # fail routinely - Homebrew now refuses untrusted ones - and that shouldn't
