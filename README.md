@@ -165,6 +165,25 @@ The rule: a pattern only belongs in `.gitignore_global` if it's junk in any repo
 git check-ignore -v path/to/file
 ```
 
+## Machine-local shell config
+
+Same idea as `~/.gitconfig.local`, for the shell. Two paths that live in `~` and are never committed:
+
+- `~/.aliases.local` — aliases and exports for one machine only.
+- `~/.config/zsh/functions.local/*.zsh` — functions for one machine only.
+
+`.zshrc` sources both at the very end if they exist, so they override anything the repo set. Neither is required — on a machine without them nothing happens and the shell starts normally.
+
+This is where work tooling goes that doesn't belong in a public dotfiles repo or on the personal machine.
+
+It replaces the `work-machine` branch, which did the same job by forking the whole repo and then needed merging forever. That branch is preserved as tag `archive/work-machine`.
+
+Eg. Adding a work-only alias is now:
+
+```zsh
+echo "alias deploy='...'" >> ~/.aliases.local
+```
+
 ## Maintenance jobs
 
 Scheduled cleanups live in `bin/`, with their schedules in `LaunchAgents/` (macOS) and `systemd/` (Linux). Both setup scripts glob those directories, so adding a job means dropping the files in and re-running. No script edits.

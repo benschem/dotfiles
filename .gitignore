@@ -13,3 +13,8 @@
 .claude/history.jsonl
 .claude/projects/
 .claude/sessions/
+
+# Machine specific config
+# Here just to be safe - these files should live in ~ anyway, not in this repo
+.aliases.local
+functions.local/

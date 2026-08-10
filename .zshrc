@@ -175,3 +175,20 @@ fi
 # Store aliases in the ~/.aliases file and load them here
 # Load them below function declarations so you can alias the functions
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+
+# Machine-local shell config: anything that belongs to one machine and must not
+# reach this public repo. Work tooling on the work laptop, personal things I
+# don't want on it, that sort of thing.
+#
+# This replaces the `work-machine` branch, which tried to do the same job by
+# forking the repo and needed constant merging - and whose attempt to gitignore
+# .zshrc and setup.sh silently did nothing, because git keeps tracking files
+# that are already tracked.
+#
+# Loaded last so it can override anything above. Both are optional; (N) stops an
+# empty functions.local from erroring, same reason as the loop further up.
+[[ -f "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
+
+for f in "$HOME"/.config/zsh/functions.local/*.zsh(N); do
+  source "$f"
+done
