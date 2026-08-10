@@ -63,6 +63,18 @@ fi
 # path, so a clone anywhere works. Same approach as setup-server.sh.
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Confirm the repo really is next to this script before symlinking a home
+# directory at it.
+#
+# Keep in sync with the copy in setup-server.sh.
+for marker in .aliases .gitconfig .zshrc; do
+  if [[ ! -e "$DOTFILES_DIR/$marker" ]]; then
+    echo "ERROR: $DOTFILES_DIR does not look like the dotfiles repo ($marker missing)." >&2
+    echo "Run this script from inside a clone, not from a copy of the file." >&2
+    exit 1
+  fi
+done
+
 skipped_count=0
 
 skip() {
