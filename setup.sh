@@ -22,9 +22,10 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: $(basename "$0") [--with-packages]"
+  echo "Usage: $(basename "$0") [--with-packages] [--force]"
   echo
   echo "  --with-packages   also install everything in the Brewfile (takes minutes)"
+  echo "  --force           run even if this machine looks headless"
 }
 
 # Loop over every argument and reject anything unrecognised. Matching only on
@@ -32,9 +33,11 @@ usage() {
 # passing no flag at all, so the script would look like it succeeded while
 # quietly skipping the thing you asked for.
 WITH_PACKAGES=0
+FORCE=0
 for arg in "$@"; do
   case "$arg" in
     --with-packages) WITH_PACKAGES=1 ;;
+    --force) FORCE=1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $arg" >&2; usage >&2; exit 1 ;;
   esac
@@ -45,6 +48,14 @@ if [[ "$(sysctl -n machdep.cpu.brand_string 2>/dev/null)" == *"Apple"* ]] && [[ 
   echo "ERROR: You're running under Rosetta on Apple Silicon."
   echo "Everything will install as x86 instead of native ARM."
   echo "Check Terminal > Get Info > uncheck 'Open using Rosetta', then reopen."
+  exit 1
+fi
+
+# Refuse to run on what looks like a headless box
+if [[ "$(uname)" != "Darwin" ]] && [[ -z "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]] && [[ "$FORCE" -eq 0 ]]; then
+  echo "ERROR: this machine looks headless - no DISPLAY or WAYLAND_DISPLAY." >&2
+  echo "setup.sh is for workstations. On a server run setup-server.sh instead." >&2
+  echo "If this really is a desktop, pass --force." >&2
   exit 1
 fi
 
