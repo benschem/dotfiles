@@ -220,13 +220,15 @@ if [[ "$WITH_ZSH" -eq 1 ]]; then
   echo "Installing zsh and starship..."
   sudo apt-get install -y -qq zsh
 
-  # .zshrc sources these three unconditionally, so without them every shell
-  # opens with errors. They're plain git clones, no package needed.
+  # .zshrc sources these unconditionally, so without them every shell opens with
+  # errors. They're plain git clones, no package needed. Keep in sync with the
+  # list in setup.sh.
   mkdir -p "$HOME/.config/zsh"
   for plugin in \
     "romkatv/zsh-defer" \
     "zsh-users/zsh-syntax-highlighting" \
-    "zsh-users/zsh-history-substring-search"
+    "zsh-users/zsh-history-substring-search" \
+    "zsh-users/zsh-autosuggestions"
   do
     plugin_name="${plugin##*/}"
     plugin_dir="$HOME/.config/zsh/$plugin_name"

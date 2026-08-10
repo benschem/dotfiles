@@ -253,14 +253,15 @@ done
 
 # --- Shell --------------------------------------------------------------------
 
-# .zshrc sources these three plugins and runs `starship init` unconditionally,
-# so without them every new shell opens with errors and no prompt. Same
-# bootstrap as setup-server.sh --with-zsh.
+# .zshrc sources these plugins and runs `starship init` unconditionally, so
+# without them every new shell opens with errors and no prompt. Same bootstrap
+# as setup-server.sh --with-zsh - keep the two lists in sync.
 mkdir -p "$HOME/.config/zsh"
 for plugin in \
   "romkatv/zsh-defer" \
   "zsh-users/zsh-syntax-highlighting" \
-  "zsh-users/zsh-history-substring-search"
+  "zsh-users/zsh-history-substring-search" \
+  "zsh-users/zsh-autosuggestions"
 do
   plugin_name="${plugin##*/}"
   plugin_dir="$HOME/.config/zsh/$plugin_name"

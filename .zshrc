@@ -2,7 +2,7 @@
 # - zsh installed
 # - rbenv, nvm, starship installed
 # - nerd font set in terminal (for starship icons)
-# - .config/zsh with zsh-syntax-highlighting & zsh-history-substring-search cloned manually or symlinked
+# - .config/zsh with the zsh plugins cloned (setup.sh / setup-server.sh --with-zsh do this)
 
 # Load Homebrew (ARM on Apple Silicon, x86 on Intel)
 if [[ -f /opt/homebrew/bin/brew ]]; then
@@ -22,6 +22,24 @@ source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Plugin to enable history substring search
 source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Plugin to suggest the rest of the line from history as you type, in grey.
+# Right arrow or End accepts it; Alt+Right accepts one word.
+#
+# Config has to be set before sourcing - the plugin reads these at load time to
+# build its widgets.
+#
+# Suggest from history only. The `completion` strategy also offers tab
+# completions, but it forks a subshell per keystroke to do it, which is slow in
+# a large repo.
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+# Suggestions must be dimmer than real input or you can't tell what you've
+# actually typed. 8 is the terminal's own bright black, so it follows the theme.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+# Don't try to suggest against a huge buffer - pasting a long command would
+# otherwise hang the prompt while it searches history on every character.
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+source $ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Add a directory for my own personal tools
 mkdir -p "$HOME/bin"
@@ -130,6 +148,12 @@ bindkey '\e[Z' reverse-menu-complete
 # Enable history substring search key bindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Accept one word of an autosuggestion with Alt+Right, so a long suggestion can
+# be taken piecemeal rather than all or nothing. Right arrow already accepts the
+# whole line via the plugin's own default binding.
+bindkey '\e\e[C' forward-word
+bindkey '^[[1;3C' forward-word
 
 # (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
