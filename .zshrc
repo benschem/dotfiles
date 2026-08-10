@@ -75,6 +75,11 @@ eval "$(starship init zsh --print-full-init)"
 # Don't save duplicate commands in history
 setopt HIST_IGNORE_ALL_DUPS
 
+# Skip duplicates when scrolling back through history with the up/down keys.
+# Separate from the above: that one controls what gets stored, this controls
+# what you step through.
+setopt HIST_FIND_NO_DUPS
+
 # Return to the last directory on a new shell `cd -`
 setopt AUTO_PUSHD
 DIRSTACKSIZE=10
