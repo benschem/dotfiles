@@ -26,7 +26,6 @@
   remote = yellow
 
 [core]
-  # pager = less -FRX # https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager
   pager = delta
 
   # Portable default. The workstation include upgrades this to `code --wait`.
@@ -41,6 +40,21 @@
   excludesfile = ~/.gitignore_global
 
 [delta]
+  # Left to itself delta runs `less --RAW-CONTROL-CHARS --no-init
+  # --quit-if-one-screen`. --no-init (-X) stops less using the terminal's
+  # alternate screen buffer, so every diff you page through is still sitting in
+  # the scrollback after you quit. Dropping it gets both behaviours: a diff
+  # shorter than a screen prints inline and stays, and anything longer uses the
+  # alternate screen and is cleaned up on quit.
+  #
+  # This has to be set here rather than via $LESS - delta passes its flags on
+  # the command line, and those beat the environment variable.
+  #
+  # -X used to be needed because -F alone would init the alternate screen before
+  # less knew the content was short, so short output flashed and vanished. Fixed
+  # in less long before the versions on any machine I use.
+  pager = less -FR
+
   navigate = true # use n and N to move between diff sections
   line-numbers = true
   side-by-side = false
