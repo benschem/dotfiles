@@ -36,7 +36,7 @@ That takes seconds and only touches config. To also install every package in the
 
 ### What it does
 
-- Symlinks config into place: `.zshrc`, `.aliases`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.rspec`, `starship.toml`, VS Code `settings.json`, `.ssh/config`, and the Claude Code config plus the skills I wrote
+- Symlinks config into place: `.zshrc`, `.aliases`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.rspec`, `starship.toml`, VS Code `settings.json`, `.ssh/config`, and the Claude Code config plus the skills and output styles I wrote
 - Seeds `~/.gitconfig.local` with my identity, and wires in the workstation-only git settings (see Git config below)
 - Clones the three zsh plugins and installs starship
 - Symlinks everything in `bin/` onto `PATH` via `~/.local/bin`

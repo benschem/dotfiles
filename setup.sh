@@ -230,6 +230,14 @@ link "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 link "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 
+# Output styles are globbed from this repo for the same reason as skills below:
+# the repo is the allowlist, so this can only ever link ones I wrote.
+mkdir -p "$HOME/.claude/output-styles"
+for style in "$DOTFILES_DIR"/.claude/output-styles/*.md; do
+  [[ -f "$style" ]] || continue
+  link "$style" "$HOME/.claude/output-styles/$(basename "$style")"
+done
+
 # Skills are globbed from *this repo*, not from ~/.claude/skills - which is the
 # whole reason it's safe. Vendored and plugin skills install themselves into
 # ~/.claude/skills as real directories and are never committed here, so the
