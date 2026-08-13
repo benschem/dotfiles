@@ -98,14 +98,25 @@ setopt HIST_IGNORE_ALL_DUPS
 # what you step through.
 setopt HIST_FIND_NO_DUPS
 
+# Write each command to the history file as it's run, rather than only when the
+# shell exits. Without this, a tab that's killed, crashes, or is still open at
+# reboot loses everything typed in it, and a new tab can't see anything run in
+# the tabs already open.
+#
+# Deliberately not SHARE_HISTORY, which also imports other shells' commands into
+# running ones. That makes up-arrow "the last thing run in any tab" instead of
+# "the last thing run here", which is worse with the substring search bound to
+# up/down below.
+setopt INC_APPEND_HISTORY
+
 # Return to the last directory on a new shell `cd -`
 setopt AUTO_PUSHD
 DIRSTACKSIZE=10
 
 # Set history file
 export HISTFILE=~/.zsh_history
-export HISTSIZE=5000
-export SAVEHIST=5000
+export HISTSIZE=50000
+export SAVEHIST=50000
 
 # Enable menu completion (cycle through options with tab)
 setopt MENU_COMPLETE
