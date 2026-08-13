@@ -77,6 +77,8 @@ brew "sass/sass/sass", trusted: true
 # Automated testing of webapps for Google Chrome
 cask "chromedriver"
 cask "font-source-code-pro-for-powerline"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"
 # Reverse proxy, secure introspectable tunnels to localhost

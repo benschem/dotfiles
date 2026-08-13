@@ -223,6 +223,9 @@ link "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 # Symlink starship config
 link "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 
+# Symlink ghostty config
+link "$DOTFILES_DIR/ghostty.config" "$HOME/.config/ghostty/config"
+
 # Symlink claude config. These three are named explicitly because ~/.claude
 # holds plenty of state I don't want touched (credentials, history, projects).
 mkdir -p "$HOME/.claude/skills"

@@ -36,7 +36,7 @@ That takes seconds and only touches config. To also install every package in the
 
 ### What it does
 
-- Symlinks config into place: `.zshrc`, `.aliases`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.rspec`, `starship.toml`, VS Code `settings.json`, `.ssh/config`, and the Claude Code config plus the skills and output styles I wrote
+- Symlinks config into place: `.zshrc`, `.aliases`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.rspec`, `starship.toml`, `ghostty.config`, VS Code `settings.json`, `.ssh/config`, and the Claude Code config plus the skills and output styles I wrote
 - Seeds `~/.gitconfig.local` with my identity, and wires in the workstation-only git settings (see Git config below)
 - Clones the three zsh plugins and installs starship
 - Symlinks everything in `bin/` onto `PATH` via `~/.local/bin`
@@ -57,7 +57,7 @@ Log in to the GitHub CLI:
 gh auth login -s 'user:email' -w
 ```
 
-Install a NerdFont [like this](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#meslo-nerd-font-patched-for-powerlevel10k) and set it in the terminal, or starship's icons won't render.
+Install a NerdFont [like this](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#meslo-nerd-font-patched-for-powerlevel10k) and set it in the terminal, or starship's icons won't render. Not needed in Ghostty, which embeds Symbols Nerd Font and falls back to it for any glyph the chosen font lacks - this is only for MacOS Terminal and anything else that doesn't.
 
 Language toolchains, which are version-managed per project and not worth pinning here:
 
