@@ -151,7 +151,7 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "rubyLsp.linters": ["rubocop"],
-  "workbench.colorTheme": "Bearded Theme Vivid Black",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.colorTheme": "Pitch Black",
 }
