@@ -58,9 +58,29 @@
   navigate = true # use n and N to move between diff sections
   line-numbers = true
   side-by-side = false
-  syntax-theme = Dracula
   line-numbers-left-format = "{nm:>4}│"
   line-numbers-right-format = "{np:>4}│"
+
+  hyperlinks = true
+
+  # Highlight using the terminal's own 16 ANSI colours
+  syntax-theme = ansi
+
+  # No boxes
+  hunk-header-decoration-style = omit
+
+  # Delta fills changed lines but its default backgrounds are too dark.
+  #
+  # `syntax` means "leave the syntax-highlighted foreground alone", so
+  # these set a background only. The -emph variants are the changed span within
+  # a changed line, which delta paints brighter than the rest of it.
+  #
+  # These are the one part of this file tuned to a specific terminal: they
+  # assume a dark background.
+  minus-style      = syntax "#3a1a1a"
+  minus-emph-style = syntax "#6e2727"
+  plus-style       = syntax "#12341a"
+  plus-emph-style  = syntax "#1e6132"
 
 [merge]
   conflictstyle = zdiff3
