@@ -226,6 +226,20 @@ link "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 # Symlink ghostty config
 link "$DOTFILES_DIR/ghostty.config" "$HOME/.config/ghostty/config"
 
+# Symlink lazygit config. Like VS Code, lazygit puts its config somewhere
+# different on each OS - and on macOS it ignores XDG_CONFIG_HOME, so the path
+# has to be spelled out rather than assumed to be under ~/.config.
+case "$(uname)" in
+  Darwin) lazygit_config_dir="$HOME/Library/Application Support/lazygit" ;;
+  Linux) lazygit_config_dir="$HOME/.config/lazygit" ;;
+  *) lazygit_config_dir="" ;;
+esac
+
+if [[ -n "$lazygit_config_dir" ]]; then
+  mkdir -p "$lazygit_config_dir"
+  link "$DOTFILES_DIR/lazygit.yml" "$lazygit_config_dir/config.yml"
+fi
+
 # Symlink claude config. These three are named explicitly because ~/.claude
 # holds plenty of state I don't want touched (credentials, history, projects).
 mkdir -p "$HOME/.claude/skills"

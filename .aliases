@@ -33,6 +33,9 @@ alias gbl="gbl" # function defined in .zshrc that lists branches
 alias gco='git switch' # more modern git checkout
 alias gcb='git switch --create' # more modern git checkout --branch
 
+## Git TUI
+alias lg='lazygit'
+
 ## Git diffing
 alias gd='git diff'
 alias gdt='git difftool'

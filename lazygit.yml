@@ -1,0 +1,16 @@
+git:
+  # List of diff views
+  # `|` cycles forward and `\` cycles back
+  diffRenderers:
+    # Don't page any output options - lazygit does its own scrolling
+    - command: delta --paging=never
+      name: delta
+
+    - command: delta --paging=never --side-by-side
+      name: side-by-side
+
+    - type: rawGit
+      name: plain
+
+os:
+  editPreset: vim
