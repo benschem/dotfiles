@@ -85,6 +85,13 @@
   # Without this, `git difftool` falls back to merge.tool
   tool = vimdiff
 
+  # Fewer spurious "whole block changed" hunks than the default myers.
+  algorithm = histogram
+
+  # Show moved lines as moved, not as a delete plus an add
+  colorMoved = zebra
+  colorMovedWS = allow-indentation-change
+
 [merge]
   conflictstyle = zdiff3
 
