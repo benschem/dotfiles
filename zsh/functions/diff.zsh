@@ -1,7 +1,7 @@
 # Use bat with diff for syntax highlighting if available
 function diff {
   if command -v bat >/dev/null 2>&1; then
-    command diff -u "$@" | bat --language=diff --style=plain --paging=never --theme=GitHub
+    command diff -u "$@" | bat --language=diff --style=plain --paging=never --theme=ansi
   else
     command diff -u "$@"
     echo "" >&2
