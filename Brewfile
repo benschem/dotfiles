@@ -9,7 +9,7 @@
 # or just run ./setup.sh --with-packages
 #
 # After installing something new, refresh this file with:
-#   brew bundle dump --file=~/code/benschem/dotfiles/Brewfile --force --describe
+#   brew bundle dump --file=~/code/benschem/dotfiles/Brewfile --force
 #
 # Note: dump discards these comments, so paste them back afterwards.
 
@@ -58,6 +58,8 @@ brew "smartmontools"
 brew "starship"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Vi 'workalike' with many additional features
+brew "vim"
 # Image processing library
 brew "vips"
 # Internet file retriever

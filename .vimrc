@@ -61,4 +61,20 @@ set sidescrolloff=5
 set list
 set listchars=tab:▸\ ,trail:·
 
+" silent! because Apple's vim has no internal diff - there the line no-ops
+silent! set diffopt+=internal,algorithm:histogram,indent-heuristic,linematch:60
+
+" $COLORTERM is unset on plain terminals and over some SSH sessions, where the
+" ctermbg fallbacks below apply instead.
+if has('termguicolors') && $COLORTERM =~# '^\%(truecolor\|24bit\)$'
+  set termguicolors
+endif
+
 colorscheme embark
+
+" Same colours as delta as themes can be too hard to read.
+" DiffText is the changed span within a DiffChange line.
+highlight DiffAdd    guibg=#12341a ctermbg=22
+highlight DiffDelete guibg=#3a1a1a guifg=#6e2727 ctermbg=52 ctermfg=88
+highlight DiffChange guibg=#1f2a3a ctermbg=17
+highlight DiffText   guibg=#2d4a6b ctermbg=24
