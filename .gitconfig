@@ -5,7 +5,7 @@
 #   - Identity, and anything else that varies per machine, lives in
 #     ~/.gitconfig.local (see .gitconfig.local.example). Never committed, so the
 #     work machine can differ from this one.
-#   - GUI-only settings (VS Code as editor and merge tool) live in
+#   - GUI-only settings (VS Code as merge tool) live in
 #     .gitconfig.workstation, included from ~/.gitconfig.local by setup.sh.
 #
 # Later values win, and the include at the bottom is last, so both of those
@@ -28,7 +28,6 @@
 [core]
   pager = delta
 
-  # Portable default. The workstation include upgrades this to `code --wait`.
   editor = vim
 
   # Applies automatically to all repos. Points at .gitignore_global, NOT at this
@@ -81,6 +80,10 @@
   minus-emph-style = syntax "#6e2727"
   plus-style       = syntax "#12341a"
   plus-emph-style  = syntax "#1e6132"
+
+[diff]
+  # Without this, `git difftool` falls back to merge.tool
+  tool = vimdiff
 
 [merge]
   conflictstyle = zdiff3

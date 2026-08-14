@@ -7,11 +7,5 @@
 #
 # On a server none of this is reachable, which is the point.
 
-[core]
-  editor = code --wait
-
 [merge]
-  tool = vscode
-
-[diff]
   tool = vscode
