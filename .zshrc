@@ -56,31 +56,33 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# Defer setting up nvm auto-switching
-zsh-defer autoload -U add-zsh-hook
-zsh-defer () {
-  load-nvmrc() {
-    if command -v nvm > /dev/null; then
-      local node_version="$(nvm version)"
-      local nvmrc_path="$(nvm_find_nvmrc)"
+# Switch node versions to match the .nvmrc of whatever directory you're in,
+# falling back to the default version outside a project.
+load-nvmrc() {
+  if command -v nvm > /dev/null; then
+    local node_version="$(nvm version)"
+    local nvmrc_path="$(nvm_find_nvmrc)"
 
-      if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    if [ -n "$nvmrc_path" ]; then
+      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-          nvm install
-        elif [ "$nvmrc_node_version" != "$node_version" ]; then
-          nvm use --silent
-        fi
-      elif [ "$node_version" != "$(nvm version default)" ]; then
-        nvm use default --silent
+      if [ "$nvmrc_node_version" = "N/A" ]; then
+        nvm install
+      elif [ "$nvmrc_node_version" != "$node_version" ]; then
+        nvm use --silent
       fi
+    elif [ "$node_version" != "$(nvm version default)" ]; then
+      nvm use default --silent
     fi
-  }
-
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
+  fi
 }
+
+# Deferred, and in this order: zsh-defer runs its queue first-in-first-out, so
+# these land after the `zsh-defer source nvm.sh` above and nvm actually exists
+# by the time load-nvmrc runs.
+zsh-defer autoload -U add-zsh-hook
+zsh-defer add-zsh-hook chpwd load-nvmrc
+zsh-defer load-nvmrc
 
 
 # LANG only. LC_ALL overrides every individual LC_* category and cannot be selectively undone
