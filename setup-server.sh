@@ -139,6 +139,31 @@ if ! locale -a 2>/dev/null | grep -qi "en_AU.utf8"; then
   sudo locale-gen
 fi
 
+# --- Terminal ----------------------------------------------------------------
+
+# ssh forwards your local $TERM, but the terminfo entry describing that terminal
+# lives on the workstation. Ghostty, Kitty and WezTerm all ship their own rather
+# than waiting for ncurses to carry them, so a stock Debian box has never heard
+# of them. With no capabilities to look up, zsh's line editor can't work out how
+# to move the cursor or erase a line, and the prompt garbles - doubled letters,
+# phantom spaces, backspace leaving debris.
+#
+# Only the machine that has the entry can hand it over, and this script runs on
+# the server, so all it can do is print the command to run from the other end.
+if command -v infocmp >/dev/null && [[ -n "${TERM:-}" && "$TERM" != "dumb" ]]; then
+  if ! infocmp "$TERM" >/dev/null 2>&1; then
+    echo
+    echo "NOTE: no terminfo entry here for TERM=$TERM, so the prompt will misbehave."
+    echo "From the workstation you ssh in from, run:"
+    echo
+    echo "  infocmp -x $TERM | ssh $(hostname) tic -x -"
+    echo
+    echo "(swap $(hostname) for whatever Host name your ~/.ssh/config uses.)"
+    echo "-x carries the terminal's extended capabilities; tic compiles the entry"
+    echo "into ~/.terminfo here, so it needs no sudo."
+  fi
+fi
+
 # --- Portable config ---------------------------------------------------------
 
 echo "Symlinking config..."
