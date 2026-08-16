@@ -199,9 +199,25 @@ fi
 # because git resolves a relative include path against ~/ - where the symlink
 # lives - not against the real file in this repo, so it could never find it.
 # An absolute path works, and is only knowable at setup time.
-# Match a real `path =` line, not the phrase - the example file mentions
-# .gitconfig.workstation in its own comments, which a loose grep matches.
-if ! grep -qE '^[[:space:]]*path[[:space:]]*=.*gitconfig\.workstation' "$HOME/.gitconfig.local"; then
+# Match this clone's path, not just any gitconfig.workstation include. Matching
+# the filename alone meant a clone that later moved kept an include pointing at
+# the old location - and git ignores an include path that doesn't exist, so the
+# workstation settings would quietly stop applying with nothing to show for it.
+#
+# -F because the path is a literal, not a pattern; it can contain regex
+# characters. The string matched is exactly what the printf below writes, which
+# is safe because nothing else writes this line.
+workstation_include="path = $DOTFILES_DIR/.gitconfig.workstation"
+
+if ! grep -qF "$workstation_include" "$HOME/.gitconfig.local"; then
+  # A `path =` line, not the bare phrase - the example file mentions
+  # .gitconfig.workstation in its own comments, which a loose grep matches.
+  if grep -qE '^[[:space:]]*path[[:space:]]*=.*gitconfig\.workstation' "$HOME/.gitconfig.local"; then
+    echo "NOTE: ~/.gitconfig.local includes a .gitconfig.workstation somewhere"
+    echo "      other than $DOTFILES_DIR - probably an older clone. Adding the"
+    echo "      current one; delete the stale include when convenient."
+  fi
+
   printf '\n[include]\n  path = %s/.gitconfig.workstation\n' "$DOTFILES_DIR" \
     >> "$HOME/.gitconfig.local"
   echo "Added the workstation include to ~/.gitconfig.local"
@@ -282,6 +298,12 @@ done
 # .zshrc sources these plugins and runs `starship init` unconditionally, so
 # without them every new shell opens with errors and no prompt. Same bootstrap
 # as setup-server.sh --with-zsh - keep the two lists in sync.
+#
+# This is the only thing that updates the plugins, so re-running the script
+# pulls them to latest upstream - the one part of a re-run that isn't a no-op.
+# Deliberate: without it they'd sit at whatever revision they were cloned at
+# forever. Any update is reported below, so a run that changes nothing says so
+# by staying silent.
 mkdir -p "$HOME/.config/zsh"
 for plugin in \
   "romkatv/zsh-defer" \
@@ -292,17 +314,28 @@ do
   plugin_name="${plugin##*/}"
   plugin_dir="$HOME/.config/zsh/$plugin_name"
   if [[ -d "$plugin_dir" ]]; then
+    revision_before="$(git -C "$plugin_dir" rev-parse HEAD)"
     git -C "$plugin_dir" pull --quiet --ff-only || true
+    revision_after="$(git -C "$plugin_dir" rev-parse HEAD)"
+    [[ "$revision_before" != "$revision_after" ]] && echo "  updated $plugin_name"
   else
     git clone --quiet --depth 1 "https://github.com/$plugin.git" "$plugin_dir"
     echo "  cloned $plugin_name"
   fi
 done
 
-if ! command -v starship >/dev/null; then
+# `command -v` alone is not enough to decide this. It only sees what's on PATH,
+# and ~/.local/bin - where the line below installs to - often isn't on the PATH
+# of the shell running this script (see the note at the end of the file). So a
+# machine that already had starship would silently re-download it on every run.
+# Check that directory directly, and keep the PATH lookup to catch a starship
+# installed some other way, such as by Homebrew.
+starship_bin_dir="$HOME/.local/bin"
+
+if [[ ! -x "$starship_bin_dir/starship" ]] && ! command -v starship >/dev/null; then
   echo "Installing starship..."
   curl -fsSL https://starship.rs/install.sh \
-    | sh -s -- --yes --bin-dir "$HOME/.local/bin"
+    | sh -s -- --yes --bin-dir "$starship_bin_dir"
 fi
 
 # --- Scheduled jobs -------------------------------------------------------------
