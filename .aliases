@@ -61,8 +61,6 @@ alias greflog='git reflog --date=relative --pretty=format:"%C(yellow)%h%Creset %
 
 # Shell aliases (replace OMZ's common-aliases plugin)
 alias mkcd='mkcd' # function defined in .zshrc that makes a new directory and switches to it
-alias cp='cp -i' # prompt before overwriting existing files
-alias mv='mv -i' # prompt before overwriting existing files
 # Use --color=auto, not -G. Both BSD (macOS) and GNU (Linux) ls accept it, while
 # -G means "colour" on BSD but "hide the group column" on GNU — so -G silently
 # dropped the colour on Linux, and knocked the `la` header out of alignment by
