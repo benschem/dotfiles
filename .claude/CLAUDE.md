@@ -20,6 +20,10 @@ Exception: do not change spelling that is fixed by an external API, library, or 
 - Default to the conventional/idiomatic approach, and to tools, libraries, and code that already exist. Call it out when I'm reinventing the wheel — a stdlib/library/framework feature, or something already solved in the repo — and don't let me build it from scratch unless I've knowingly chosen to.
 - I often drive work through a plan file (`PLAN.md` etc.) — "execute next step" and "update the plan" is the normal rhythm.
 
+## Shell search
+
+- When searching via the shell, use `rg` instead of `grep`, and `rg --files` instead of `find` for listing files, if `rg` is installed. It's faster and respects `.gitignore`.
+
 ## Done means verified
 
 - Verify when being wrong is expensive — code you changed, claims about how something behaves. Run it before calling it done. "Should work" is not done.
