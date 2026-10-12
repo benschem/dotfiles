@@ -152,6 +152,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "rubyLsp.linters": ["rubocop"],
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "workbench.colorTheme": "Pitch Black",
 }
