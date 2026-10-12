@@ -15,7 +15,14 @@ they cannot realistically reuse has failed even when it returns the right answer
 - Prefer the plain form over one tuned for machine parsing: `git status` over
   `git status --porcelain=v1 -z`, `ls src` over `find` with predicates,
   `grep -rn pattern src` over `grep -oP` with lookarounds.
-- Prefer two simple commands over one clever one, even at the cost of a round trip.
+- One question per command. If the description needs "then" or "also" to cover what
+  the command does, it is two commands — send them as two calls. Independent checks
+  go out as parallel calls in the same turn, which keeps the speed without the density.
+- No `for` loops, and no `;` or `&&` chains across unrelated checks. Run the command
+  once per target instead. `&&` is for steps that are one action (`cd dir && make`),
+  not for batching.
+- One job per `ssh` call. An open connection is not a reason to add a second check;
+  nothing rides along inside the quoted string.
 - No inline scripts or heredocs unless the shell genuinely cannot do the job.
   Reach for `jq` and `awk` before any scripting language. When a real script is
   warranted, write Ruby, not Python — the user can read Ruby, and its `-n`/`-p`/`-a`
@@ -25,6 +32,10 @@ Correctness outranks readability. Reach for the precise machine-readable form wh
 plain one would be ambiguous or wrong — parsing many files, exact field extraction,
 anything where misreading output would produce a false claim. Never simplify a command
 into a guess. When the complex form is necessary, use it and say why in the description.
+
+Correctness is a reason to make a single command more complex. It is never a reason
+to put several jobs into one command: the "one question per command" rule above still
+applies, and saving a round trip is not a correctness argument.
 
 ## Command descriptions
 
