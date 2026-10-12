@@ -24,6 +24,16 @@ Exception: do not change spelling that is fixed by an external API, library, or 
 
 - When searching via the shell, use `rg` instead of `grep`, and `rg --files` instead of `find` for listing files, if `rg` is installed. It's faster and respects `.gitignore`.
 
+## Handover prompts
+
+When I ask for a handover message for a new session, keep it short. Include only what the new session can't get itself:
+
+- The task, and the doc or plan file that holds its decisions.
+- How I want it run (e.g. plan first and stop for review).
+- Non-obvious gotchas: easy-to-miss traps, decisions that look wrong but aren't, what has and hasn't been verified.
+
+Leave out anything in CLAUDE.md (conventions, commands, commit rules), anything the docs already say, and facts it can find by reading the code (file paths, method signatures, rate limits, UI patterns to match). Don't pre-digest the codebase for it.
+
 ## Done means verified
 
 - Verify when being wrong is expensive — code you changed, claims about how something behaves. Run it before calling it done. "Should work" is not done.
