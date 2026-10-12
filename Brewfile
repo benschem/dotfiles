@@ -81,6 +81,8 @@ cask "chromedriver"
 cask "font-source-code-pro-for-powerline"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Desktop automation application for macOS
+cask "hammerspoon"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"
 # Reverse proxy, secure introspectable tunnels to localhost

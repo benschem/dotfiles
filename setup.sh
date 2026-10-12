@@ -243,6 +243,10 @@ link "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 # Symlink ghostty config
 link "$DOTFILES_DIR/ghostty.config" "$HOME/.config/ghostty/config"
 
+# Symlink hammerspoon config. init.lua turns on launch at login itself, but
+# only once Hammerspoon has been opened - see the note at the end.
+link "$DOTFILES_DIR/hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
+
 # Symlink lazygit config. Like VS Code, lazygit puts its config somewhere
 # different on each OS - and on macOS it ignores XDG_CONFIG_HOME, so the path
 # has to be spelled out rather than assumed to be under ~/.config.
@@ -376,3 +380,11 @@ case ":$PATH:" in
     echo "one only:  export PATH=\"\$HOME/.local/bin:\$PATH\""
     ;;
 esac
+
+# Hammerspoon can't run its config until it's been opened once, so on a fresh
+# install nothing has enabled launch at login yet.
+if [[ -d /Applications/Hammerspoon.app ]] && ! pgrep -xq Hammerspoon; then
+  echo
+  echo "NOTE: Hammerspoon isn't running. Open it once so its config can enable"
+  echo "launch at login."
+fi
