@@ -1,14 +1,5 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline-command.sh"
-  },
-  "enabledPlugins": {
-    "ruby-lsp@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true
-  },
   "permissions": {
-    "defaultMode": "default",
     "deny": [
       "Bash(gh pr comment:*)",
       "Bash(gh pr edit:*)",
@@ -24,8 +15,10 @@
       "Bash(gh issue close:*)",
       "Bash(gh release create:*)",
       "Bash(git push:*)"
-    ]
+    ],
+    "defaultMode": "default"
   },
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -40,12 +33,25 @@
       }
     ]
   },
-  "effortLevel": "medium",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  },
   "outputStyle": "Apprentice",
-  "theme": "dark-ansi",
-  "voiceEnabled": true,
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "voice": {
     "enabled": true,
     "mode": "hold"
-  }
+  },
+  "theme": "dark-ansi",
+  "voiceEnabled": true
 }
