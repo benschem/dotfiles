@@ -168,6 +168,10 @@ bindkey '^[[B' history-substring-search-down
 bindkey '\e\e[C' forward-word
 bindkey '^[[1;3C' forward-word
 
+# Home and End - zsh doesn't bind them by default
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+
 # (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
 
