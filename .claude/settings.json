@@ -8,7 +8,37 @@
     "frontend-design@claude-plugins-official": true
   },
   "permissions": {
-    "defaultMode": "default"
+    "defaultMode": "default",
+    "deny": [
+      "Bash(gh pr comment:*)",
+      "Bash(gh pr edit:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr review:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh pr reopen:*)",
+      "Bash(gh pr ready:*)",
+      "Bash(gh issue comment:*)",
+      "Bash(gh issue create:*)",
+      "Bash(gh issue edit:*)",
+      "Bash(gh issue close:*)",
+      "Bash(gh release create:*)",
+      "Bash(git push:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-github-writes.sh",
+            "statusMessage": "Checking for GitHub writes"
+          }
+        ]
+      }
+    ]
   },
   "effortLevel": "medium",
   "outputStyle": "Apprentice",

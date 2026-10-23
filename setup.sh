@@ -276,6 +276,13 @@ for style in "$DOTFILES_DIR"/.claude/output-styles/*.md; do
   link "$style" "$HOME/.claude/output-styles/$(basename "$style")"
 done
 
+# Hooks are globbed the same way. settings.json calls them by ~/.claude path.
+mkdir -p "$HOME/.claude/hooks"
+for hook in "$DOTFILES_DIR"/.claude/hooks/*.sh; do
+  [[ -f "$hook" ]] || continue
+  link "$hook" "$HOME/.claude/hooks/$(basename "$hook")"
+done
+
 # Skills are globbed from *this repo*, not from ~/.claude/skills - which is the
 # whole reason it's safe. Vendored and plugin skills install themselves into
 # ~/.claude/skills as real directories and are never committed here, so the
