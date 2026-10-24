@@ -91,5 +91,9 @@ alias ports='lsof -i -P -n | grep LISTEN' # show listening TCP ports with numeri
 alias sniff='sudo lsof -i -P -n' # show all active network sockets (requires sudo)
 alias killdb='killdb' # function defined in .zshrc that force kills a pg db
 
+# Claude Code
+alias claude="claude --settings '{\"disableAutoMode\":\"disable\"}'" # auto mode off, which hides the "switch to auto mode" tip on every permission prompt
+alias automode='command claude -c --permission-mode auto' # reopen this directory's last session in auto mode (/exit the old one first)
+
 # Clarity project manager aliases
 alias urgent='clarity list --filter urgency=high --filter urgency=medium --filter urgency=low --sort urgency'
