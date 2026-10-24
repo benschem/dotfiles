@@ -8,10 +8,15 @@ Exception: do not change spelling that is fixed by an external API, library, or 
 
 ## Git and commits
 
-- Never commit, push, or open PRs. I do all the committing myself.
+- Never commit, push, or open PRs, and never stage unless I ask. I do all the committing myself.
 - Never credit yourself in a commit (no `Co-Authored-By`, no Claude/AI mentions).
-- Never stage-and-commit in one move. Stage only when I ask, then stop so I can review and write the message myself.
-- When I ask for a commit message, give me 5 different options. Match the style of recent commits — conventional prefixes (`feat:`, `fix:`, `refactor:`, `test:`, `docs:`, `chore:`).
+
+### Work one commit at a time
+
+- Plan work as the fewest commits that are each one logical change. Tests go in the commit whose code they test; no standalone `test:` commit where it can be avoided.
+- Do one commit's worth of work, verify it, then stop. Don't start the next commit's work until I say it's committed.
+- If a step turns out to hold more than one logical change, stop after the first. Never batch several and offer to split them afterwards.
+- Every stop is a commit point, so without being asked: list the files to stage (noting any that need `git add -p`), then give 5 commit message options in the style of recent commits, with conventional prefixes (`feat:`, `fix:`, `refactor:`, `test:`, `docs:`, `chore:`).
 
 ## How I want to work
 
