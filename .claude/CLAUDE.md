@@ -54,4 +54,9 @@ Leave out anything in CLAUDE.md (conventions, commands, commit rules), anything 
 ## Writing (docs, README, prose)
 
 - No tables in markdown — they render badly.
-- README stays generic/vendor-neutral. Personal deploy specifics live in `DEPLOYMENT.md`, which is intentionally uncommitted — don't reference it from committed files.
+- No sentence that announces its own importance ("this is the one that matters", "worth stating plainly", "the honest answer", "load-bearing"), and no quotable closing line that restates the paragraph. State the fact.
+- No em dashes for punch in docs. Use a full stop, comma or colon.
+- Bold at the start of a bullet is a short label for a distinct item. No bolded sentences, and no bold for emphasis.
+- One home per fact. Search for where it already lives and point there; describe what exists, not how the text got here.
+- When something changes, rewrite the passage. Don't append a correction below the old text, and don't strike text through.
+- README stays generic/vendor-neutral. Personal deploy specifics live in `DEPLOYMENT.md`, which is uncommitted by default — don't reference it from committed files. If a project's own instructions say its deployment doc is committed, follow the project.
