@@ -135,9 +135,6 @@ zmodload zsh/complist
 # Use a menu select style for better navigation
 zstyle ':completion:*' menu select=long-list
 
-# Prevent auto-entering directories on completion
-zstyle ':completion:*' auto-menu false
-
 # Accept exact matches automatically
 zstyle ':completion:*' accept-exact 'true'
 
@@ -167,6 +164,17 @@ bindkey '^[[B' history-substring-search-down
 # whole line via the plugin's own default binding.
 bindkey '\e\e[C' forward-word
 bindkey '^[[1;3C' forward-word
+
+# Treat / as a word boundary, so that after tabbing into a folder Ctrl+W backs
+# out one level instead of deleting the whole path. Alt+Right (above) also
+# accepts a suggested path one folder at a time. By default zsh counts / as
+# part of a word.
+#
+# To also stop at - _ and . (Ctrl+W on rails-backend/ leaves rails-), replace
+# this line with:
+#   autoload -U select-word-style
+#   select-word-style bash
+WORDCHARS=${WORDCHARS//\/}
 
 # Home and End - zsh doesn't bind them by default
 bindkey '^[[H' beginning-of-line
