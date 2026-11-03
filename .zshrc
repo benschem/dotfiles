@@ -140,6 +140,13 @@ zstyle ':completion:*' accept-exact 'true'
 # capital still only matches a capital.
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+# cd also looks in these folders, so `cd mediaserver` works from anywhere. A
+# folder of the same name where you are still wins.
+cdpath=(~/code/benschem)
+# Tab only offers cdpath folders when nothing local matches, or `cd <Tab>` would
+# list every project in every directory.
+zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+
 # Makes zsh re-read your $PATH to find new executables on tab-completion
 # so that commands you've added to your system recently (like from a brew install) are found without restarting the shell.
 zstyle ':completion:*' rehash true # compinit can be slow without caching
