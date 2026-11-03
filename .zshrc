@@ -136,6 +136,10 @@ zstyle ':completion:*' menu select
 # Accept exact matches automatically
 zstyle ':completion:*' accept-exact 'true'
 
+# Lowercase matches either case, so `cd desk` completes to Desktop. Typing a
+# capital still only matches a capital.
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 # Makes zsh re-read your $PATH to find new executables on tab-completion
 # so that commands you've added to your system recently (like from a brew install) are found without restarting the shell.
 zstyle ':completion:*' rehash true # compinit can be slow without caching
