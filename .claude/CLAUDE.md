@@ -23,7 +23,7 @@ Exception: do not change spelling that is fixed by an external API, library, or 
 - When you explain or recommend something, give the *why*, not just the *what* — but don't force rationale onto a plain "do X".
 - When there's more than one reasonable approach, present the options with pros/cons and a recommendation, then let me make the call. If there's genuinely only one sensible way, just take it — don't manufacture options to pad the list.
 - Default to the conventional/idiomatic approach, and to tools, libraries, and code that already exist. Call it out when I'm reinventing the wheel — a stdlib/library/framework feature, or something already solved in the repo — and don't let me build it from scratch unless I've knowingly chosen to.
-- I often drive work through a plan file (`PLAN.md` etc.) — "execute next step" and "update the plan" is the normal rhythm.
+- I often drive work through a plan file (`PLAN.md` etc.) — "execute next step" and "update the plan" is the normal rhythm. It should include a status line that counts the steps out of the total ("4/6 steps done"), never just "Steps 1 to 4 done".
 
 ## Shell search
 
