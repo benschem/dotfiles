@@ -140,10 +140,6 @@ zstyle ':completion:*' accept-exact 'true'
 # so that commands you've added to your system recently (like from a brew install) are found without restarting the shell.
 zstyle ':completion:*' rehash true # compinit can be slow without caching
 
-# Autocomplete hostnames you've previously accessed via SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
-
 # Tab completes but leaves globs alone, so `ls *` stays as typed. zsh's default
 # Tab would expand it into every file name.
 bindkey '^I' complete-word
