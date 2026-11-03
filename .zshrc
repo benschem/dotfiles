@@ -122,8 +122,10 @@ setopt MENU_COMPLETE
 # Disable automatic listing of completions on ambiguous tab
 unsetopt AUTO_LIST
 
-# Enable tab completion and cache
-autoload -Uz compinit && compinit -C # `-C`` caches completions if not already cached, which speeds up shell start
+# Enable tab completion. compinit caches its setup in ~/.zcompdump and rebuilds
+# it when completion files are added or removed, so a newly installed tool's
+# completions work in the next shell.
+autoload -Uz compinit && compinit
 
 # Load the module required for menu selection
 zmodload zsh/complist

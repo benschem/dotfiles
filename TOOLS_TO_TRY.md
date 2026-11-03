@@ -50,12 +50,10 @@ when a name matches several. Most `cd`s in shell history are hops between
 projects typed out in full, and plenty are typos.
 
 Add `eval "$(zoxide init zsh --cmd cd)"` at the end of `.zshrc`, after
-`compinit`, or its completions won't work. If they still don't appear,
-`rm ~/.zcompdump*` then `reload`, since `compinit -C` never rescans. `--cmd cd`
-makes plain `cd` do the jumping (and `cdi` the picking), so there's no new
-command to remember. The catch is that a mistyped `cd` can land somewhere
-unexpected instead of failing. It starts empty, so seed it once with
-`zoxide add ~/code/benschem/*/`.
+`compinit`, or its completions won't work. `--cmd cd` makes plain `cd` do the
+jumping (and `cdi` the picking), so there's no new command to remember. The
+catch is that a mistyped `cd` can land somewhere unexpected instead of failing.
+It starts empty, so seed it once with `zoxide add ~/code/benschem/*/`.
 
 **fzf.** `brew install fzf`
 
