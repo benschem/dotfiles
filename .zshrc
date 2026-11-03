@@ -147,6 +147,16 @@ cdpath=(~/code/benschem)
 # list every project in every directory.
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 
+# cdr keeps a list of recent directories in ~/.chpwd-recent-dirs, shared by
+# every shell. `cdr <Tab>` picks from it, newest first.
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+# Tab inserts the path rather than its number, and once part of a name is typed
+# it completes like cd. recent-dirs-insert needs recent-dirs-default, which lets
+# cdr take a path.
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':completion:*' recent-dirs-insert true
+
 # Makes zsh re-read your $PATH to find new executables on tab-completion
 # so that commands you've added to your system recently (like from a brew install) are found without restarting the shell.
 zstyle ':completion:*' rehash true # compinit can be slow without caching
