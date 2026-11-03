@@ -16,7 +16,7 @@ Exception: do not change spelling that is fixed by an external API, library, or 
 - Plan work as the fewest commits that are each one logical change. Tests go in the commit whose code they test; no standalone `test:` commit where it can be avoided.
 - Do one commit's worth of work, verify it, then stop. Don't start the next commit's work until I say it's committed.
 - If a step turns out to hold more than one logical change, stop after the first. Never batch several and offer to split them afterwards.
-- Every stop is a commit point, so without being asked: list the files to stage (noting any that need `git add -p`), then give 5 commit message options in the style of recent commits, with conventional prefixes (`feat:`, `fix:`, `refactor:`, `test:`, `docs:`, `chore:`).
+- Every stop is a commit point, so without being asked: list the files to stage (noting any that need `git add -p`), then give 5 commit message options in the style of my own recent commits in that repo (`git log --author='Ben Schembri' --no-merges`), not other people's. That means conventional prefixes (`feat:`, `fix:`, `refactor:`, `test:`, `docs:`, `chore:`) everywhere except my dotfiles repo, which uses plain sentences.
 
 ## How I want to work
 
