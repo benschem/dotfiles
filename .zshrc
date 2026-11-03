@@ -130,8 +130,8 @@ autoload -Uz compinit && compinit
 # Load the module required for menu selection
 zmodload zsh/complist
 
-# Use a menu select style for better navigation
-zstyle ':completion:*' menu select=long-list
+# Open the selection menu whenever Tab or Shift+Tab has more than one match
+zstyle ':completion:*' menu select
 
 # Accept exact matches automatically
 zstyle ':completion:*' accept-exact 'true'
@@ -144,13 +144,11 @@ zstyle ':completion:*' rehash true # compinit can be slow without caching
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 
-# This makes Tab and ShiftTab, when pressed on the command line, enter the menu instead of inserting a completion
-complete-and-menu-select() {
-  zle complete-word
-  zle menu-select
-}
-zle -N complete-and-menu-select
-bindkey '^I' complete-and-menu-select
+# Tab completes but leaves globs alone, so `ls *` stays as typed. zsh's default
+# Tab would expand it into every file name.
+bindkey '^I' complete-word
+
+# Shift+Tab steps back through the menu
 bindkey '\e[Z' reverse-menu-complete
 
 # Enable history substring search key bindings
