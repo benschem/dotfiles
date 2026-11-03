@@ -53,5 +53,6 @@
     "mode": "hold"
   },
   "theme": "dark-ansi",
+  "idleCompaction": false,
   "voiceEnabled": true
 }
