@@ -55,7 +55,14 @@ If translating a Rails convention to another framework is ever ambiguous, ask me
 - Focus on the public interface. Test public methods, API endpoints, and user-facing flows. Only test private methods indirectly through the public methods that call them.
 - For queries and scopes, assert which records are returned, not just the count. `contain_exactly(record_a, record_b)` catches bugs that `expect(results.count).to eq(2)` won't.
 - Prefer asserting side effects when the method's job is to change state. Prefer asserting return values when the method is a query. Don't assert both unless both are part of the contract.
-- Don't mirror the production code in the spec. If the implementation loops, branches, or transforms data in a certain way, the spec should describe the behaviour from the outside, not duplicate that logic.
+- Don't recompute the expected value in the spec. Pick a concrete input, work out the output by hand and assert that literal. A spec that repeats the code's formula, loop or branch passes even when the logic is wrong. For branches, give each case its own `context` and literal instead of an `if` or a loop in the spec.
+  ```ruby
+  # Bad: repeats the code's transformation, so it can't catch a mistake in it
+  expect(user.email_address).to eq(raw_email.strip.downcase)
+
+  # Good
+  expect(user.email_address).to eq('test@example.com')
+  ```
 - Prefer the simplest spec that proves the behaviour. If two examples prove the same thing, remove one.
 
 ## Avoid Implementation Assertions
