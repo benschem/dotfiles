@@ -4,6 +4,7 @@
 # - If the reflog is cleared or expired, HEAD@{1} might be missing.
 
 # Wrapper for git commit --amend with push safety checks
+function_shortcuts+=('git commit --amend' gca)
 function gca {
   local use_no_edit=false
 
@@ -57,6 +58,7 @@ function gca {
 }
 
 # Variant for git commit --amend --no-edit
+function_shortcuts+=('git commit --amend --no-edit' gcan)
 function gcan {
   gca --no-edit "$@"
 }

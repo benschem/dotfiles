@@ -41,6 +41,32 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 source $ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Plugin to remind you when a command you typed has an alias, such as `ga` for
+# `git add`
+source $ZSH/zsh-you-should-use/you-should-use.plugin.zsh
+
+# It only knows aliases, so also remind about functions that stand in for a
+# longer command. Each file in zsh/functions adds its own entry to
+# function_shortcuts, full command to function name. Checks the line with
+# aliases expanded, so `gc --amend` counts too, and the longest match wins, so
+# --no-edit suggests gcan rather than gca.
+typeset -A function_shortcuts
+remind-function-shortcuts() {
+  local expanded_line="$3"
+  local full_command best_match=""
+  for full_command in "${(@k)function_shortcuts}"; do
+    if [[ "$expanded_line" == "$full_command" || "$expanded_line" == "$full_command "* ]] &&
+      (( ${#full_command} > ${#best_match} )); then
+      best_match="$full_command"
+    fi
+  done
+  if [[ -n "$best_match" ]]; then
+    ysu_message "function" "$best_match" "${function_shortcuts[$best_match]}"
+  fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec remind-function-shortcuts
+
 # Add a directory for my own personal tools
 mkdir -p "$HOME/bin"
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"

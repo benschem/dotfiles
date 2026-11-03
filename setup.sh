@@ -320,7 +320,8 @@ for plugin in \
   "romkatv/zsh-defer" \
   "zsh-users/zsh-syntax-highlighting" \
   "zsh-users/zsh-history-substring-search" \
-  "zsh-users/zsh-autosuggestions"
+  "zsh-users/zsh-autosuggestions" \
+  "MichaelAquilina/zsh-you-should-use"
 do
   plugin_name="${plugin##*/}"
   plugin_dir="$HOME/.config/zsh/$plugin_name"
