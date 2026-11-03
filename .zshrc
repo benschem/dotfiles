@@ -111,10 +111,6 @@ setopt HIST_FIND_NO_DUPS
 # up/down below.
 setopt INC_APPEND_HISTORY
 
-# Return to the last directory on a new shell `cd -`
-setopt AUTO_PUSHD
-DIRSTACKSIZE=10
-
 # Set history file
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
