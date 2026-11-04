@@ -15,6 +15,7 @@
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": true,
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
   "files.exclude": {
     "__pycache__": true,
     "_site": true,
@@ -151,6 +152,8 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "rubyLsp.linters": ["rubocop"],
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.blame.editorDecoration.enabled": true,
+  "git.blame.statusBarItem.template": "${authorName} (${authorDateAgo}) ${subject}",
   "workbench.colorTheme": "Pitch Black",
 }
