@@ -109,7 +109,6 @@
   "explorer.confirmPasteNative": false,
   "chat.commandCenter.enabled": false,
   "chat.agent.maxRequests": 0,
-  "git.path": "/usr/local/bin/git",
   "css.lint.duplicateProperties": "warning",
   "css.lint.float": "warning",
   "css.lint.hexColorLength": "warning",
