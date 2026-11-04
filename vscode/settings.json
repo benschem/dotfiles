@@ -68,6 +68,9 @@
   },
   "editor.formatOnSave": true,
   "prettier.enableDebugLogs": false,
+  // Only format with Prettier in projects that have a Prettier config, so it
+  // stays out of repos that use another formatter or none.
+  "prettier.requireConfig": true,
   "sass.format.convert": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -102,8 +105,6 @@
   "editor.renderLineHighlightOnlyWhenFocus": true,
   "editor.semanticHighlighting.enabled": true,
   "editor.wordWrapColumn": 120,
-  "prettier.printWidth": 120,
-  "prettier.singleAttributePerLine": true,
   "cssvar.files": ["**/*.css"],
   "cssvar.ignore": [],
   "update.showReleaseNotes": false,
