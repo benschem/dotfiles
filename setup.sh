@@ -178,8 +178,8 @@ case "$(uname)" in
 esac
 
 if [[ -n "$vscode_user_dir" ]]; then
-  link "$DOTFILES_DIR/settings.json" "$vscode_user_dir/settings.json"
-  link "$DOTFILES_DIR/keybindings.json" "$vscode_user_dir/keybindings.json"
+  link "$DOTFILES_DIR/vscode/settings.json" "$vscode_user_dir/settings.json"
+  link "$DOTFILES_DIR/vscode/keybindings.json" "$vscode_user_dir/keybindings.json"
 fi
 
 # Symlink personal shell command aliases
